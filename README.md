@@ -1,3 +1,6 @@
+#Notes
+This is not a project that belongs to the parent project. This is the original project: https://github.com/limboemu
+
 # 6/10/2023
 
 What's new
