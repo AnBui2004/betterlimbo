@@ -1,13 +1,14 @@
-# Limbo Emulator (QEMU) for Android
-#
-# For APK Downloads, Guides, and Help visit the Limbo Wiki:
-# https://github.com/limboemu/limbo/wiki
+# Notes
+This is not a project that belongs to the parent project. This is the original project: https://github.com/limboemu
+# What's new
+- Compatible with Android 14.
+- New icon pack.
+- Fix empty file list error when using Legacy File Manager on Android 10.
+- Fix file and folder not found error on Android 10+.
+- Reduces the possibility of crashes when temporarily exiting an application while the virtual machine is running.
+- Added Manager all file permission.
+- Added Post Notification permission.
+- Create qcow2 files with capacities of 32GB, 64GB and 128GB.
 
-Limbo is a QEMU-based emulator for Android supports emulation for these architectures:
-	x86/x86_64
-	ARM/ARM64
-	PowerPC/PowerPC64
-	Sparc
-
-For developers read file README.developers for instructions on how to compile on your own
-	and other useful information.
+Notes
+The virtual machine status notification feature is not yet supported on Android 12+.
