@@ -1,14 +1,10 @@
 # Notes
 This is not a project that belongs to the parent project. This is the original project: https://github.com/limboemu
 # What's new
-- Compatible with Android 14.
-- New icon pack.
-- Fix empty file list error when using Legacy File Manager on Android 10.
-- Fix file and folder not found error on Android 10+.
-- Reduces the possibility of crashes when temporarily exiting an application while the virtual machine is running.
-- Added Manager all file permission.
-- Added Post Notification permission.
-- Create qcow2 files with capacities of 32GB, 64GB and 128GB.
+- More modern interface.
+- Added Boot menu, Intel IOMMU, Virtio Memory, Virtio GPU, Virtio Serial, Virtio Random Number Generator, JIT Cache (1MB), Dual channel memory, UEFI.
 
 Notes
-The virtual machine status notification feature is not yet supported on Android 12+.
+- The virtual machine status notification feature is not yet supported on Android 12+.
+- It may not work on Android 13+ OS on some devices.
+- If the UEFI file cannot be loaded. Create a folder named "limbo" in internal storage. Go back to Limbo app, select Hard Disk A, select New, select CHANGE DIRECTORY and select the folder named "limbo" just created earlier. And now deselect and re-select UEFI.
