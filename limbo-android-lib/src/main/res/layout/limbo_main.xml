@@ -48,12 +48,14 @@
                         android:src="@drawable/virtualmachine" />
 
                     <TextView
+                            android:textColor="@android:color/white"
                         android:id="@+id/machineStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="Load Machine: "
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        />
 
                     <Spinner
                         android:id="@+id/machineval"
@@ -82,12 +84,14 @@
                         android:src="@drawable/snapshot" />
 
                     <TextView
+                            android:textColor="@android:color/white"
                         android:id="@+id/snapshotStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:text="Snapshot: "
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        />
 
                     <Spinner
                         android:id="@+id/snapshotval"
@@ -109,13 +113,15 @@
                     android:orientation="vertical">
 
                     <TextView
+                            android:textColor="@android:color/white"
                         android:id="@+id/statusStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|center_vertical"
                         android:gravity="center|center_vertical"
                         android:text=""
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        />
 
                     <ImageView
                         android:id="@+id/statusVal"
@@ -187,18 +193,16 @@
                     android:id="@+id/userInterfaceSectionl"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:layout_marginBottom="4dp">
 
 
                     <LinearLayout
                         android:id="@+id/userinterfaceheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -206,6 +210,7 @@
                             android:src="@drawable/homeoffice" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/userInterfaceSectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -213,11 +218,13 @@
                             android:gravity="center_horizontal"
                             android:padding="10dp"
                             android:text="User Interface"
+                            
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/uisectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -226,7 +233,8 @@
                             android:minLines="2"
                             android:padding="10dp"
                             android:text=""
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            />
 
 
                     </LinearLayout>
@@ -254,12 +262,14 @@
                                 android:src="@drawable/switchhost" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/uiStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Display "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/uival"
@@ -288,13 +298,15 @@
                                 android:src="@drawable/keyboard" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/keyboardstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right|center_vertical"
                                 android:gravity="right|center_vertical"
                                 android:text="Keyboard"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/keyboardval"
@@ -324,13 +336,15 @@
                                 android:src="@drawable/mouse" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/mousestr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right|center_vertical"
                                 android:gravity="right|center_vertical"
                                 android:text="Mouse"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/mouseval"
@@ -359,13 +373,15 @@
                                 android:src="@drawable/refresh" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/orientationstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right|center_vertical"
                                 android:gravity="right|center_vertical"
                                 android:text="Orientation"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/orientationval"
@@ -407,13 +423,15 @@
                                     android:padding="5dp">
 
                                     <TextView
+                            android:textColor="@android:color/white"
                                         android:id="@+id/showtoolbarStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="right|center_vertical"
                                         android:gravity="right|center_vertical"
                                         android:text="Always Toolbar"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        />
 
                                     <CheckBox
                                         android:id="@+id/showtoolbarval"
@@ -434,13 +452,15 @@
                                     android:padding="5dp">
 
                                     <TextView
+                            android:textColor="@android:color/white"
                                         android:id="@+id/desktopmodeStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="right|center_vertical"
                                         android:gravity="right|center_vertical"
                                         android:text="Desktop Mode"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        />
 
                                     <CheckBox
                                         android:id="@+id/desktopmodeval"
@@ -470,13 +490,15 @@
                                     android:padding="5dp">
 
                                     <TextView
+                            android:textColor="@android:color/white"
                                         android:id="@+id/fullscreenstr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="right|center_vertical"
                                         android:gravity="right|center_vertical"
                                         android:text="Fullscreen"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        />
 
                                     <CheckBox
                                         android:id="@+id/fullscreenval"
@@ -496,13 +518,15 @@
                                     android:padding="5dp">
 
                                     <TextView
+                            android:textColor="@android:color/white"
                                         android:id="@+id/vncExternalStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="right|center_vertical"
                                         android:gravity="right|center_vertical"
                                         android:text="External VNC"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        />
 
                                     <CheckBox
                                         android:id="@+id/vncexternalval"
@@ -523,13 +547,15 @@
                                     android:padding="5dp">
 
                                     <TextView
+                            android:textColor="@android:color/white"
                                         android:id="@+id/qmpExternalStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="right|center_vertical"
                                         android:gravity="right|center_vertical"
                                         android:text="External QMP"
-                                        android:textSize="15sp" />
+                                        android:textSize="15sp"
+                                        />
 
                                     <CheckBox
                                         android:id="@+id/qmpexternalval"
@@ -551,15 +577,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/cpusectionheaderl"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -567,6 +592,7 @@
                             android:src="@drawable/machinetype" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/cpusectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -575,9 +601,11 @@
                             android:padding="10dp"
                             android:text="CPU/Board"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/cpusectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -586,7 +614,8 @@
                             android:minLines="2"
                             android:padding="10dp"
                             android:text=""
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            />
                     </LinearLayout>
 
                     <LinearLayout
@@ -612,12 +641,14 @@
                                 android:src="@drawable/microchip" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/archtypeStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Architecture:"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/archtypeval"
@@ -645,12 +676,14 @@
                                 android:src="@drawable/machinetype" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/machinetypeStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Machine Type:"
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/machinetypeval"
@@ -678,12 +711,14 @@
                                 android:src="@drawable/cpu" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/cpuStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="CPU Model: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/cpuval"
@@ -702,15 +737,19 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:padding="10dp">
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/cpunumStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="CPU Cores: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/cpunumval"
@@ -729,20 +768,25 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:padding="10dp">
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp">
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/rammemStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
                                 android:text="RAM Memory (MB) "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/rammemval"
-                                android:layout_width="fill_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="172dp"
+                                android:layout_height="19dp"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="right"
                                 android:singleLine="true"
@@ -772,13 +816,15 @@
                                 android:padding="5dp">
 
                                 <TextView
+                            android:textColor="@android:color/white"
                                     android:id="@+id/enablemttcgstr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right|center_vertical"
                                     android:gravity="right|center_vertical"
                                     android:text="Enable  MTTCG"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    />
 
                                 <CheckBox
                                     android:id="@+id/enablemttcgval"
@@ -800,13 +846,15 @@
                                 android:padding="5dp">
 
                                 <TextView
+                            android:textColor="@android:color/white"
                                     android:id="@+id/enablekvmstr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right|center_vertical"
                                     android:gravity="right|center_vertical"
                                     android:text="Enable KVM"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    />
 
                                 <CheckBox
                                     android:id="@+id/enablekvmval"
@@ -834,13 +882,15 @@
                                 android:padding="5dp">
 
                                 <TextView
+                            android:textColor="@android:color/white"
                                     android:id="@+id/hpetStr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right|center_vertical"
                                     android:gravity="right|center_vertical"
                                     android:text="Disable HPET"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    />
 
                                 <CheckBox
                                     android:id="@+id/hpetval"
@@ -862,13 +912,15 @@
                                 android:padding="5dp">
 
                                 <TextView
+                            android:textColor="@android:color/white"
                                     android:id="@+id/tscStr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right|center_vertical"
                                     android:gravity="right|center_vertical"
-                                    android:text="Disable TSC"
-                                    android:textSize="15sp" />
+                                    android:text="Enable AVX"
+                                    android:textSize="15sp"
+                                    />
 
                                 <CheckBox
                                     android:id="@+id/tscval"
@@ -887,7 +939,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
-                                android:id="@+id/acpil"
+                                android:id="@+id/linearballon"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right|center_vertical"
@@ -897,13 +949,46 @@
                                 android:padding="5dp">
 
                                 <TextView
+                            android:textColor="@android:color/white"
+                                    android:id="@+id/textballon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical"
+                                    android:text="Virtio Memory"
+                                    android:textSize="15sp"
+                                    android:padding="4dp"
+                                    android:layout_marginRight="2dp"
+                                    />
+
+                                <CheckBox
+                                    android:id="@+id/ballon"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/acpil"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_weight="1"
+                                android:gravity="right|center_vertical"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+++
+                                <TextView
+                            android:textColor="@android:color/white"
                                     android:id="@+id/acpiStr"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="right|center_vertical"
                                     android:gravity="right|center_vertical"
                                     android:text="Disable ACPI"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"
+                                    />
 
                                 <CheckBox
                                     android:id="@+id/acpival"
@@ -923,17 +1008,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/storageheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -941,6 +1023,7 @@
                             android:src="@drawable/stack" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/storagesectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -949,10 +1032,12 @@
                             android:padding="10dp"
                             android:text="Disks"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/storagesectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -961,7 +1046,8 @@
                             android:minLines="2"
                             android:padding="10dp"
                             android:text=""
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            />
 
                     </LinearLayout>
 
@@ -995,12 +1081,14 @@
                                 android:src="@drawable/harddisk" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/hdimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Hard Disk A: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/hdimgval"
@@ -1035,12 +1123,14 @@
                                 android:src="@drawable/harddisk" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/hdbimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Hard Disk B: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/hdbimgval"
@@ -1075,12 +1165,14 @@
                                 android:src="@drawable/harddisk" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/hdcimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Hard Disk C: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/hdcimgval"
@@ -1115,12 +1207,14 @@
                                 android:src="@drawable/harddisk" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/hddimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Hard Disk D: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/hddimgval"
@@ -1155,12 +1249,14 @@
                                 android:src="@drawable/folder" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/sharedfolderstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Shared Folder "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/sharedfolderval"
@@ -1181,18 +1277,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
 
                     <LinearLayout
                         android:id="@+id/removablestorageheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -1200,6 +1293,7 @@
                             android:src="@drawable/cdrom" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/removableStoragesectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1208,10 +1302,12 @@
                             android:padding="10dp"
                             android:text="Removable"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            />
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/removablesectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1220,7 +1316,8 @@
                             android:minLines="2"
                             android:padding="10dp"
                             android:text=""
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            />
 
                     </LinearLayout>
 
@@ -1255,12 +1352,14 @@
                                 android:src="@drawable/cd" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/cdromimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="CDROM: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/cdromimgval"
@@ -1296,12 +1395,14 @@
                                 android:src="@drawable/floppy" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/floppyimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Floppy A: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/floppyimgval"
@@ -1336,12 +1437,14 @@
                                 android:src="@drawable/floppy" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/floppybimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:text="Floppy B: "
-                                android:textSize="15sp" />
+                                android:textSize="15sp"
+                                />
 
                             <Spinner
                                 android:id="@+id/floppybimgval"
@@ -1376,6 +1479,7 @@
                                 android:src="@drawable/sdcard" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/sdcardimgstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1404,18 +1508,15 @@
                     android:layout_gravity="center|center_vertical"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
 
                     <LinearLayout
                         android:id="@+id/bootheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -1424,6 +1525,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/bootsectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1436,6 +1538,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/bootsectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1471,6 +1574,7 @@
                                 android:src="@drawable/diskpartition" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/bootfromstr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1504,6 +1608,7 @@
                                 android:src="@drawable/sysfile" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/kernelStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1537,6 +1642,7 @@
                                 android:src="@drawable/sysfile" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/initrdStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1564,6 +1670,7 @@
                             android:padding="10dp">
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/appendStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1591,18 +1698,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
 
                     <LinearLayout
                         android:id="@+id/graphicsheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -1610,6 +1714,7 @@
                             android:src="@drawable/screen" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/graphicssectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1622,6 +1727,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/graphicssectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1657,6 +1763,7 @@
                                 android:src="@drawable/videocard" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/vgacfgStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1683,18 +1790,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
 
                     <LinearLayout
                         android:id="@+id/audioheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -1702,6 +1806,7 @@
                             android:src="@drawable/audiocard" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/audiosectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1714,6 +1819,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/audiosectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1749,6 +1855,7 @@
                                 android:src="@drawable/loudspeaker" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/soundcfgStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1775,18 +1882,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:orientation="vertical">
 
 
                     <LinearLayout
                         android:id="@+id/networkheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-
-                        >
+                        android:layout_marginBottom="2dp">
 
                         <ImageView
                             android:layout_width="48dp"
@@ -1794,6 +1898,7 @@
                             android:src="@drawable/network" />
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/networksectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1806,6 +1911,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/networksectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -1840,6 +1946,7 @@
                                 android:src="@drawable/network" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/netcfgStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1872,6 +1979,7 @@
                                 android:src="@drawable/networkcard" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/netDevicesStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1905,6 +2013,7 @@
                                 android:src="@drawable/dnsserver" />
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/dnsStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1934,6 +2043,7 @@
                             android:padding="10dp">
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/hostfwdStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -1961,16 +2071,16 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:background="@drawable/border"
                     android:gravity="center|center_vertical"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:layout_marginBottom="8dp">
 
 
                     <LinearLayout
                         android:id="@+id/advancedheaderl"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginBottom="2dp"
 
                         >
 
@@ -1981,6 +2091,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/advancedSectionStr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1993,6 +2104,7 @@
 
 
                         <TextView
+                            android:textColor="@android:color/white"
                             android:id="@+id/advancedsectionsummaryStr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -2045,6 +2157,7 @@
                                     android:padding="5dp">
 
                                     <TextView
+                            android:textColor="@android:color/white"
                                         android:id="@+id/prioStr"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -2076,6 +2189,7 @@
                             android:padding="10dp">
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/extraparamsStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -2103,6 +2217,7 @@
                             android:visibility="gone">
 
                             <TextView
+                            android:textColor="@android:color/white"
                                 android:id="@+id/hdcachecfgStr"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -2119,6 +2234,346 @@
                                 android:singleLine="true"
                                 android:text=""
                                 android:textSize="15sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linear3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/linear1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#000000"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/textview1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="More"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/imageview1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:src="@drawable/down48"
+                            android:scaleType="center" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linear2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:background="#000000"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/linear109"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview88"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/menu48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview91"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Boot menu"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear110"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview89"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/chip48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview92"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Intel IOMMU"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear111"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview90"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/memoryslot48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview93"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Virtio Memory"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox17"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear112"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview91"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/chip48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview94"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Virtio GPU"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear113"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview92"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/chip248"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview95"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Virtio Serial"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox19"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear114"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview93"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/display48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview96"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Virtio Random Number Generator"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox20"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear115"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview94"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/chip48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview97"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="JIT cache (1MB)"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear116"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview95"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/battle48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview98"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Dual chanel memory"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox22"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear118"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview97"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bios48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview100"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="UEFI"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkbox23"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear117"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageview96"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:src="@drawable/info48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textview99"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="All of these settings will apply to all virtual machines. It will not save for each virtual machine. You may need to set it up if you switch to another virtual machine."
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

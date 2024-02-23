@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/dialogImportExport"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@color/colorPrimary"
+	android:gravity="center|center_vertical"
+	android:padding="5dip"
+	android:theme="@style/AppTheme">
+
+	<TableRow>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="right|center_vertical"
+			android:text="@string/import_settings_file_url" />
+
+		<EditText
+			android:id="@+id/textImportUrl"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:singleLine="true"
+			android:textAppearance="?android:attr/textAppearanceSmall" />
+
+		<Button
+			android:id="@+id/buttonImport"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/import_settings" />
+	</TableRow>
+
+	<TableRow>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="right|center_vertical"
+			android:text="@string/export_settings_path" />
+
+		<EditText
+			android:id="@+id/textExportPath"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:singleLine="true"
+			android:textAppearance="?android:attr/textAppearanceSmall" />
+
+		<Button
+			android:id="@+id/buttonExport"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/export_settings" />
+	</TableRow>
+</TableLayout>
