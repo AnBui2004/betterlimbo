@@ -26,10 +26,10 @@
         android:name="com.max2idea.android.limbo.main.LimboApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/limbo"
+        android:icon="@mipmap/ic_launcher"
         android:label="Limbo x86 PC Emulator"
         android:largeHeap="true"
-        android:theme="@style/Theme.AppCompat"
+        android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true"
         >
         <activity
@@ -37,8 +37,7 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
             android:label="Limbo x86"
             android:launchMode="singleTask"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,14 +53,12 @@
             android:name="com.max2idea.android.limbo.main.LimboSDLActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name="com.max2idea.android.limbo.main.LimboVNCActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" >
         </activity>
@@ -73,7 +70,6 @@
         <activity
             android:name="com.max2idea.android.limbo.utils.LinksManager"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:label="Downloads" >
         </activity>
         <service
