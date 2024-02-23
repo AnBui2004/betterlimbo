@@ -39,6 +39,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,6 +54,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -92,10 +95,14 @@ public class FileManager extends ListActivity {
     private File currdir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
     private File file;
     private TextView currentDir;
+
+    private ImageView imghome;
     private Button select;
     private LimboActivity.FileType fileType;
     private static String TAG = "FileManager";
     private HashMap<String,String> filter = new HashMap<>();
+
+    private String lastDirectory = "/storage/emulated/0/";
 
     //XXX: for now we dont use filters since file extensions on images is something not so standard
     // and we don't want to hide files from the user
@@ -272,6 +279,11 @@ public class FileManager extends ListActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        Window w = this.getWindow();
+        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        w.setNavigationBarColor(Color.parseColor("#151E25"));
+
         setContentView(R.layout.directory_list);
         select = (Button) findViewById(R.id.select_button);
         select.setOnClickListener(new View.OnClickListener() {
@@ -280,8 +292,18 @@ public class FileManager extends ListActivity {
             }
         });
         currentDir = (TextView) findViewById(R.id.currDir);
+        imghome = (ImageView) findViewById(R.id.imagehome);
+        imghome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _view) {
+                lastDirectory = Environment.getExternalStorageDirectory().getPath();
+                currdir = new File(Environment.getExternalStorageDirectory().getAbsolutePath());
+                currentDir.setText(currdir.getPath());
+                fill(currdir.listFiles());
+            }
+        });
         Bundle b = this.getIntent().getExtras();
-        String lastDirectory = b.getString("lastDir");
+        lastDirectory = b.getString("lastDir");
         fileType = (LimboActivity.FileType) b.getSerializable("fileType");
         filter = (HashMap<String,String>) b.getSerializable("filterExt");
 

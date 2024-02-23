@@ -24,9 +24,11 @@ import android.androidVNC.RfbProto;
 import android.androidVNC.VncCanvas;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,7 +36,10 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.net.wifi.WifiManager.WifiLock;
 import android.os.AsyncTask;
@@ -60,6 +65,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -93,6 +100,8 @@ import com.max2idea.android.limbo.utils.UIUtils.LimboFileSpinnerAdapter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -256,6 +265,60 @@ public class LimboActivity extends AppCompatActivity {
     private AlertDialog.Builder dialogone;
 
     private AlertDialog.Builder dialogthree;
+    private CheckBox mballon;
+    private TextView mtextballon;
+
+    private LinearLayout linear3;
+    private LinearLayout linear1;
+    private LinearLayout linear2;
+    private TextView textview1;
+    private ImageView imageview1;
+    private LinearLayout linear109;
+    private LinearLayout linear110;
+    private LinearLayout linear111;
+    private LinearLayout linear112;
+    private LinearLayout linear113;
+    private LinearLayout linear114;
+    private LinearLayout linear115;
+    private LinearLayout linear116;
+    private LinearLayout linear117;
+    private ImageView imageview88;
+    private TextView textview91;
+    private CheckBox checkbox15;
+    private ImageView imageview89;
+    private TextView textview92;
+    private CheckBox checkbox16;
+    private ImageView imageview90;
+    private TextView textview93;
+    private CheckBox checkbox17;
+    private ImageView imageview91;
+    private TextView textview94;
+    private CheckBox checkbox18;
+    private ImageView imageview92;
+    private TextView textview95;
+    private CheckBox checkbox19;
+    private ImageView imageview93;
+    private TextView textview96;
+    private CheckBox checkbox20;
+    private ImageView imageview94;
+    private TextView textview97;
+    private CheckBox checkbox21;
+    private ImageView imageview95;
+    private TextView textview98;
+    private CheckBox checkbox22;
+    private ImageView imageview96;
+    private TextView textview99;
+    private LinearLayout linear118;
+    private ImageView imageview97;
+    private TextView textview100;
+    private CheckBox checkbox23;
+
+    private LinearLayout linearballon;
+
+    private boolean hideaan = false;
+
+    private int posmachine = 0;
+    private int possemachine = 0;
 
     public static void quit() {
         activity.finish();
@@ -1018,6 +1081,14 @@ public class LimboActivity extends AppCompatActivity {
 
                 updateSummary(false);
 
+                if (position < 26 && possemachine > 0) {
+                    if (checkbox16.isChecked()) {
+                        UIUtils.toastShort(LimboActivity.this, "Intel IOMMU will not work now because the machine type is not Q35.");
+                    }
+                }
+                posmachine = position;
+                anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
+
             }
 
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -1101,10 +1172,6 @@ public class LimboActivity extends AppCompatActivity {
                             cpuNum);
 
                 }
-                if (position > 0 && (Config.enable_X86 || Config.enable_X86_64))
-                    mDisableTSC.setChecked(true);
-                else
-                    mDisableTSC.setChecked(false);
 
 
                 updateSummary(false);
@@ -1127,6 +1194,7 @@ public class LimboActivity extends AppCompatActivity {
 
 
                 updateSummary(false);
+                anbuidata.edit().putString("cram", String.valueOf((long)(position))).commit();
             }
 
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -1660,6 +1728,26 @@ public class LimboActivity extends AppCompatActivity {
             }
         });
 
+        mballon.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton viewButton, boolean isChecked) {
+                if (currMachine == null)
+                    return;
+
+                MachineOpenHelper.getInstance(activity).update(currMachine,
+                        MachineOpenHelper.BALLON, ((isChecked ? 1 : 0) + ""));
+                currMachine.ballon = (isChecked ? 1 : 0);
+                updateSummary(false);
+                if (isChecked) {
+                    anbuidata.edit().putString("ballon", "1").commit();
+                } else {
+                    anbuidata.edit().putString("ballon", "").commit();
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
         mDNS.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -2098,12 +2186,12 @@ public class LimboActivity extends AppCompatActivity {
         populateAttributes();
         execTimer();
         checkFirstLaunch();
-        setupToolbar();
         checkUpdate();
         checkLog();
         checkAndLoadLibs();
         setupLinks();
-        grantpermissionnow();
+        initialize(savedInstanceState);
+        initializeLogic();
 
     }
 
@@ -2308,6 +2396,7 @@ public class LimboActivity extends AppCompatActivity {
 
                 }
                 updateSummary(false);
+                possemachine = position;
             }
 
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -2484,6 +2573,389 @@ public class LimboActivity extends AppCompatActivity {
         ab.setTitle(R.string.app_name);
     }
 
+    public void Rround() {
+        _rroundup(mUserInterfaceSectionHeader);
+        _rrounddown(mUserInterfaceSectionDetails);
+        _rroundup(mCPUSectionHeader);
+        _rrounddown(mCPUSectionDetails);
+        _rroundup(mStorageSectionHeader);
+        _rrounddown(mStorageSectionDetails);
+        _rroundup(mRemovableStorageSectionHeader);
+        _rrounddown(mRemovableStorageSectionDetails);
+        _rroundup(mBootSectionHeader);
+        _rrounddown(mBootSectionDetails);
+        _rroundup(mGraphicsSectionHeader);
+        _rrounddown(mGraphicsSectionDetails);
+        _rroundup(mAudioSectionHeader);
+        _rrounddown(mAudioSectionDetails);
+        _rroundup(mNetworkSectionHeader);
+        _rrounddown(mNetworkSectionDetails);
+        _rroundup(mAdvancedSectionHeader);
+        _rrounddown(mAdvancedSectionDetails);
+
+        _rround20(linear1);
+
+    }
+
+    public void Rrestore() {
+        mballon.setChecked(anbuidata.getString("ballon", "").length() == 1);
+
+        checkbox15.setChecked(anbuidata.getString("bootmenu", "").length() == 1);
+        checkbox16.setChecked(anbuidata.getString("iommu", "").length() == 1);
+        checkbox17.setChecked(anbuidata.getString("vmem", "").length() == 1);
+        checkbox18.setChecked(anbuidata.getString("vgpu", "").length() == 1);
+        checkbox19.setChecked(anbuidata.getString("vserial", "").length() == 1);
+        checkbox20.setChecked(anbuidata.getString("vrng", "").length() == 1);
+        checkbox21.setChecked(anbuidata.getString("jitcache", "").length() == 1);
+        checkbox22.setChecked(anbuidata.getString("dualm", "").length() == 1);
+        checkbox23.setChecked(anbuidata.getString("uefi", "").length() == 1);
+    }
+
+    public void Rsave() {
+        if (mballon.isChecked()) {
+            anbuidata.edit().putString("ballon", "1").commit();
+        } else {
+            anbuidata.edit().putString("ballon", "").commit();
+        }
+    }
+
+    public void hideToolbar() {
+        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
+        tb.setVisibility(View.GONE);
+
+        Window w = this.getWindow();
+        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        w.setNavigationBarColor(Color.parseColor("#151E25"));
+    }
+
+    public void _rroundup(final View _view) {
+
+            android.graphics.drawable.GradientDrawable gga = new android.graphics.drawable.GradientDrawable();  gga.setCornerRadii(new float[] { 20, 20, 20, 20, 10, 10, 10, 10 });
+            gga.setColor(Color.parseColor("#000000"));
+            _view.setBackground(gga);
+
+    }
+
+
+    public void _rrounddown(final View _view) {
+
+            android.graphics.drawable.GradientDrawable gga = new android.graphics.drawable.GradientDrawable();  gga.setCornerRadii(new float[] { 10, 10, 10, 10, 20, 20, 20, 20 });
+            gga.setColor(Color.parseColor("#000000"));
+            _view.setBackground(gga);
+
+    }
+
+    public void _rround20(final View _view) {
+
+        _view.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)20, 0xFF000000));
+
+    }
+
+    private void initialize(Bundle _savedInstanceState) {
+        linear3 = findViewById(R.id.linear3);
+        linear1 = findViewById(R.id.linear1);
+        linear2 = findViewById(R.id.linear2);
+        textview1 = findViewById(R.id.textview1);
+        imageview1 = findViewById(R.id.imageview1);
+        linear109 = findViewById(R.id.linear109);
+        linear110 = findViewById(R.id.linear110);
+        linear111 = findViewById(R.id.linear111);
+        linear112 = findViewById(R.id.linear112);
+        linear113 = findViewById(R.id.linear113);
+        linear114 = findViewById(R.id.linear114);
+        linear115 = findViewById(R.id.linear115);
+        linear116 = findViewById(R.id.linear116);
+        linear117 = findViewById(R.id.linear117);
+        imageview88 = findViewById(R.id.imageview88);
+        textview91 = findViewById(R.id.textview91);
+        checkbox15 = findViewById(R.id.checkbox15);
+        imageview89 = findViewById(R.id.imageview89);
+        textview92 = findViewById(R.id.textview92);
+        checkbox16 = findViewById(R.id.checkbox16);
+        imageview90 = findViewById(R.id.imageview90);
+        textview93 = findViewById(R.id.textview93);
+        checkbox17 = findViewById(R.id.checkbox17);
+        imageview91 = findViewById(R.id.imageview91);
+        textview94 = findViewById(R.id.textview94);
+        checkbox18 = findViewById(R.id.checkbox18);
+        imageview92 = findViewById(R.id.imageview92);
+        textview95 = findViewById(R.id.textview95);
+        checkbox19 = findViewById(R.id.checkbox19);
+        imageview93 = findViewById(R.id.imageview93);
+        textview96 = findViewById(R.id.textview96);
+        checkbox20 = findViewById(R.id.checkbox20);
+        imageview94 = findViewById(R.id.imageview94);
+        textview97 = findViewById(R.id.textview97);
+        checkbox21 = findViewById(R.id.checkbox21);
+        imageview95 = findViewById(R.id.imageview95);
+        textview98 = findViewById(R.id.textview98);
+        checkbox22 = findViewById(R.id.checkbox22);
+        imageview96 = findViewById(R.id.imageview96);
+        textview99 = findViewById(R.id.textview99);
+        linear118 = findViewById(R.id.linear118);
+        imageview97 = findViewById(R.id.imageview97);
+        textview100 = findViewById(R.id.textview100);
+        checkbox23 = findViewById(R.id.checkbox23);
+
+        linearballon = findViewById(R.id.linearballon);
+
+        linear1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _view) {
+                if (hideaan) {
+                    hideaan = false;
+                    linear2.setVisibility(View.VISIBLE);
+                    imageview1.setImageResource(R.drawable.icons8collapsearrow48);
+                    _rroundup(linear1);
+                }
+                else {
+                    hideaan = true;
+                    linear2.setVisibility(View.GONE);
+                    imageview1.setImageResource(R.drawable.down48);
+                    _rround20(linear1);
+                }
+            }
+        });
+
+        checkbox15.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("bootmenu", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("bootmenu", "").commit();
+                }
+            }
+        });
+
+        checkbox16.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("iommu", "1").commit();
+                    anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
+                    if (posmachine < 26 && possemachine > 0) {
+                        UIUtils.toastShort(LimboActivity.this, "Intel IOMMU will not work now because the machine type is not Q35.");
+                    }
+                }
+                else {
+                    anbuidata.edit().putString("iommu", "").commit();
+                }
+            }
+        });
+
+        checkbox17.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("vmem", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("vmem", "").commit();
+                }
+            }
+        });
+
+        checkbox18.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("vgpu", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("vgpu", "").commit();
+                }
+            }
+        });
+
+        checkbox19.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("vserial", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("vserial", "").commit();
+                }
+            }
+        });
+
+        checkbox20.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("vrng", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("vrng", "").commit();
+                }
+            }
+        });
+
+        checkbox21.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("jitcache", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("jitcache", "").commit();
+                }
+            }
+        });
+
+        checkbox22.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("dualm", "1").commit();
+                }
+                else {
+                    anbuidata.edit().putString("dualm", "").commit();
+                }
+            }
+        });
+
+        checkbox23.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("uefi", "1").commit();
+                    if (Build.VERSION.SDK_INT > 29) {
+
+                            if (Environment.isExternalStorageManager()) {
+                                File file = new File("/storage/emulated/0/limbo/OVMF.fd");
+                                if(file.exists()) {
+
+                                } else {
+                                    copyAssets();
+                                }
+                            } else {
+                                checkbox23.setChecked(false);
+                                dialogtwo = new AlertDialog.Builder(LimboActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                                dialogtwo.setTitle("Manager all files");
+                                dialogtwo.setMessage("Limbo need this permission to use this feature.");
+                                dialogtwo.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                        intent.setData(uri);
+                                        startActivity(intent);
+                                    }
+                                });
+                                dialogtwo.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                dialogtwo.create().show();
+                            }
+
+                    } else if (Build.VERSION.SDK_INT > 22) {
+
+                            if (ContextCompat.checkSelfPermission(LimboActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                checkbox23.setChecked(false);
+                                if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                    dialogtwo = new AlertDialog.Builder(LimboActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+                                    dialogtwo.setTitle("Files");
+                                    dialogtwo.setMessage("Limbo need this permission to use this feature.");
+                                    dialogtwo.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                                        }
+                                    });
+                                    dialogtwo.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    });
+                                    dialogtwo.create().show();
+                                } else {
+                                    checkbox23.setChecked(false);
+                                    ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                                }
+                            } else {
+                                File file = new File("/storage/emulated/0/limbo/OVMF.fd");
+                                if (file.exists()) {
+
+                                } else {
+                                    copyAssets();
+                                }
+                            }
+
+                    }
+                }
+                else {
+                    anbuidata.edit().putString("uefi", "").commit();
+                }
+            }
+        });
+    }
+
+    private void initializeLogic() {
+        hideaan = true;
+        linear2.setVisibility(View.GONE);
+
+        linearballon.setVisibility(View.INVISIBLE);
+        _rrounddown(linear2);
+        grantpermissionnow();
+        hideToolbar();
+        Rround();
+        Rrestore();
+    }
+    private void copyAssets() {
+        AssetManager assetManager = getAssets();
+        String[] files = null;
+        try {
+            files = assetManager.list("");
+        } catch (IOException e) {
+
+        }
+        for(String filename : files) {
+            InputStream in = null;
+            OutputStream out = null;
+            try {
+                in = assetManager.open(filename);
+
+                String outDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/limbo" ;
+
+                File outFile = new File(outDir, filename);
+
+                out = new FileOutputStream(outFile);
+                copyFile(in, out);
+                in.close();
+                in = null;
+                out.flush();
+                out.close();
+                out = null;
+            } catch(IOException e) {
+
+            }
+        }
+    }
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
+    }
+
     public void checkUpdate() {
         Thread tsdl = new Thread(new Runnable() {
             public void run() {
@@ -2581,7 +3053,7 @@ public class LimboActivity extends AppCompatActivity {
     private void createMachine(String machineValue) {
 
         if (MachineOpenHelper.getInstance(activity).getMachine(machineValue, "") != null) {
-            UIUtils.toastShort(activity, "VM Name \"" + machineValue + "\" exists please choose another name!");
+            UIUtils.toastShort(activity, "VM Name \"" + machineValue + "\" exists please choose anotheranother name!");
             return;
         }
 
@@ -3177,6 +3649,8 @@ public class LimboActivity extends AppCompatActivity {
         this.mDisableACPI = (CheckBox) findViewById(R.id.acpival);
         this.mDisableHPET = (CheckBox) findViewById(R.id.hpetval);
         this.mDisableTSC = (CheckBox) findViewById(R.id.tscval);
+        this.mballon = (CheckBox) findViewById(R.id.ballon);
+        this.mtextballon = (TextView) findViewById(R.id.textballon);
 
         //disks
         this.mHDAenable = (CheckBox) findViewById(R.id.hdimgcheck);
@@ -3450,7 +3924,9 @@ public class LimboActivity extends AppCompatActivity {
             if (mDisableHPET.isChecked())
                 text = appendOption("Disable HPET", text);
             if (mDisableTSC.isChecked())
-                text = appendOption("Disable TSC", text);
+                text = appendOption("Enable AVX", text);
+            if (mballon.isChecked())
+                text = appendOption("Virtio Memory", text);
             mCPUSectionSummary.setText(text);
         }
     }
@@ -6037,6 +6513,17 @@ public class LimboActivity extends AppCompatActivity {
             this.mMachineType.setSelection(0);
         }
 
+        if (currMachine == null)
+            return;
+
+        if (pos < 26 && possemachine > 0) {
+            if (checkbox16.isChecked()) {
+                UIUtils.toastShort(LimboActivity.this, "Intel IOMMU will not work now because the machine type is not Q35.");
+            }
+        }
+        posmachine = pos;
+        anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
+
     }
 
     private void populateUI() {
@@ -6374,6 +6861,7 @@ public class LimboActivity extends AppCompatActivity {
         }
         super.onPause();
         this.stopTimeListener();
+        Rsave();
     }
 
     public void onResume() {

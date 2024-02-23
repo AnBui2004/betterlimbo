@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.media.AudioManager;
 import android.os.AsyncTask;
@@ -32,6 +33,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -922,7 +924,7 @@ public class LimboSDLActivity extends SDLActivity {
 
 		createUI(0, 0);
 
-		UIUtils.setupToolBar(this);
+
 
 		UIUtils.showHints(this);
 
@@ -930,7 +932,10 @@ public class LimboSDLActivity extends SDLActivity {
 
         UIUtils.setOrientation(this);
 
-
+		Window w = this.getWindow();
+		w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		w.setNavigationBarColor(Color.parseColor("#151E25"));
 	}
 
     private void createUI(int w, int h) {
