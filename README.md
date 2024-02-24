@@ -4,4 +4,5 @@ This is not a project that belongs to the parent project. This is the original p
 - Fixed UEFI not working on Android 13+.
 
 Notes
+- UEFI only works with 64-bit CPUs.
 - It may not work on Android 12+ OS on some devices.
