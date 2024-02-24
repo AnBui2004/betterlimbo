@@ -2832,72 +2832,18 @@ public class LimboActivity extends AppCompatActivity {
                 final boolean _isChecked = _param2;
                 if (_isChecked) {
                     anbuidata.edit().putString("uefi", "1").commit();
-                    if (Build.VERSION.SDK_INT > 29) {
 
-                            if (Environment.isExternalStorageManager()) {
-                                File file = new File("/storage/emulated/0/limbo/OVMF.fd");
-                                if(file.exists()) {
+                    File directoryToStore;
+                    directoryToStore = getBaseContext().getExternalFilesDir("system");
+                    if (!directoryToStore.exists()) {
+                        if (directoryToStore.mkdirs());
+                    }
 
-                                } else {
-                                    copyAssets();
-                                }
-                            } else {
-                                checkbox23.setChecked(false);
-                                dialogtwo = new AlertDialog.Builder(LimboActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                                dialogtwo.setTitle("Manager all files");
-                                dialogtwo.setMessage("Limbo need this permission to use this feature.");
-                                dialogtwo.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                                        Uri uri = Uri.fromParts("package", getPackageName(), null);
-                                        intent.setData(uri);
-                                        startActivity(intent);
-                                    }
-                                });
-                                dialogtwo.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                    File file = new File("/storage/emulated/0/Android/data/com.limbo.emu.main/files/system/OVMF.fd");
+                    if(file.exists()) {
 
-                                    }
-                                });
-                                dialogtwo.create().show();
-                            }
-
-                    } else if (Build.VERSION.SDK_INT > 22) {
-
-                            if (ContextCompat.checkSelfPermission(LimboActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                                checkbox23.setChecked(false);
-                                if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                    dialogtwo = new AlertDialog.Builder(LimboActivity.this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                                    dialogtwo.setTitle("Files");
-                                    dialogtwo.setMessage("Limbo need this permission to use this feature.");
-                                    dialogtwo.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
-                                        }
-                                    });
-                                    dialogtwo.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-
-                                        }
-                                    });
-                                    dialogtwo.create().show();
-                                } else {
-                                    checkbox23.setChecked(false);
-                                    ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
-                                }
-                            } else {
-                                File file = new File("/storage/emulated/0/limbo/OVMF.fd");
-                                if (file.exists()) {
-
-                                } else {
-                                    copyAssets();
-                                }
-                            }
-
+                    } else {
+                        copyAssets();
                     }
                 }
                 else {
@@ -2932,7 +2878,7 @@ public class LimboActivity extends AppCompatActivity {
             try {
                 in = assetManager.open(filename);
 
-                String outDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/limbo" ;
+                String outDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.limbo.emu.main/files/system/" ;
 
                 File outFile = new File(outDir, filename);
 
