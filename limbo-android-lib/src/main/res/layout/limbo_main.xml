@@ -31,7 +31,8 @@
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="15dp"
+                android:animateLayoutChanges="true">
 
                 <LinearLayout
                     android:id="@+id/machinel"
@@ -195,7 +196,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|center_vertical"
                     android:orientation="vertical"
-                    android:layout_marginBottom="4dp">
+                    android:layout_marginBottom="4dp"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -578,7 +580,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
                     <LinearLayout
                         android:id="@+id/cpusectionheaderl"
@@ -1009,7 +1012,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
                     <LinearLayout
                         android:id="@+id/storageheaderl"
@@ -1278,7 +1282,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -1509,7 +1514,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -1699,7 +1705,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -1791,7 +1798,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -1883,7 +1891,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -2073,7 +2082,8 @@
                     android:layout_marginTop="4dp"
                     android:gravity="center|center_vertical"
                     android:orientation="vertical"
-                    android:layout_marginBottom="8dp">
+                    android:layout_marginBottom="8dp"
+                    android:animateLayoutChanges="true">
 
 
                     <LinearLayout
@@ -2241,7 +2251,8 @@
                     android:id="@+id/linear3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:animateLayoutChanges="true">
                     <LinearLayout
                         android:id="@+id/linear1"
                         android:layout_width="match_parent"
@@ -2509,7 +2520,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:text="Dual chanel memory"
+                                android:text="Dual channel memory"
                                 android:textSize="12sp"
                                 android:textColor="#FFFFFF"
                                 android:layout_weight="1" />
@@ -2540,7 +2551,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:text="UEFI"
+                                android:text="UEFI (Only works on x64 CPUs)"
                                 android:textSize="12sp"
                                 android:textColor="#FFFFFF"
                                 android:layout_weight="1" />
