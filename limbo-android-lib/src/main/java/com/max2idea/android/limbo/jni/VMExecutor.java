@@ -48,7 +48,7 @@ import java.util.Arrays;
 public class VMExecutor {
 
     private static final String TAG = "VMExecutor";
-    private static Context context;
+    public static Context context;
 
     String[] params = null;
 
@@ -917,7 +917,7 @@ public class VMExecutor {
 
         if (anbuidata.getString("uefi", "").length() == 1) {
             paramsList.add("-bios");
-            paramsList.add("/storage/emulated/0/limbo/OVMF.fd");
+            paramsList.add("/storage/emulated/0/Android/data/com.limbo.emu.main/files/system/OVMF.fd");
         }
 
     }
