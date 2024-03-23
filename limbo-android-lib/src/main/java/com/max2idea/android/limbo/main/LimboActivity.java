@@ -18,6 +18,8 @@
  */
 package com.max2idea.android.limbo.main;
 
+import static com.max2idea.android.limbo.jni.VMExecutor.context;
+
 import android.Manifest;
 import android.androidVNC.ConnectionBean;
 import android.androidVNC.RfbProto;
@@ -82,6 +84,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.jni.VMExecutor;
@@ -419,6 +422,7 @@ public class LimboActivity extends AppCompatActivity {
             activity.finish();
 
             Log.v(TAG, "Exit");
+
             //XXX: We exit here to force unload the native libs
             System.exit(0);
 
@@ -1129,49 +1133,9 @@ public class LimboActivity extends AppCompatActivity {
 
                 final String cpuNum = (String) ((ArrayAdapter<?>) mCPUNum.getAdapter()).getItem(position);
 
-                if (position > 0 && currMachine.enableMTTCG != 1 && currMachine.enableKVM != 1 && !firstMTTCGCheck) {
-                    firstMTTCGCheck = true;
-                    DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            currMachine.cpuNum = Integer.parseInt(cpuNum);
-                            MachineOpenHelper.getInstance(activity).update(currMachine, MachineOpenHelper.CPUNUM,
-                                    cpuNum);
-                            updateSummary(false);
-                        }
-                    };
-
-                    DialogInterface.OnClickListener cancelListener =
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    mCPUNum.setSelection(0);
-                                    return;
-                                }
-                            };
-
-                    DialogInterface.OnClickListener helpListener =
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    mCPUNum.setSelection(0);
-                                    goToURL(Config.faqLink);
-                                    return;
-                                }
-                            };
-
-                    UIUtils.UIAlert(activity,
-                            "Multiple vCPUs",
-                            "Warning! Setting Multiple Virtual CPUs will NOT result in additional performance unless you use KVM or MTTCG. " +
-                                    "Your device might even be slow or the Guest OS might hang so it is advised to use 1 CPU. " +
-                                    "\n\n" + ((Config.enable_X86 || Config.enable_X86_64) ?
-                                    "If your guest OS is not able to boot check option 'Disable TSC' and restart the VM. " : "")
-                                    + "Do you want to continue?",
-                            16, false, "OK", okListener, "Cancel", cancelListener, "vCPU Help", helpListener);
-
-                } else {
                     currMachine.cpuNum = Integer.parseInt(cpuNum);
                     MachineOpenHelper.getInstance(activity).update(currMachine, MachineOpenHelper.CPUNUM,
                             cpuNum);
-
-                }
 
 
                 updateSummary(false);
