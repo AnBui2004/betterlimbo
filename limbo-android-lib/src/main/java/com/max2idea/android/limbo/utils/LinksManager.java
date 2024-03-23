@@ -20,11 +20,14 @@ package com.max2idea.android.limbo.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -63,6 +66,11 @@ public class LinksManager extends AppCompatActivity {
         setContentView(R.layout.links_list);
         setupListeners();
         fill();
+        Window w = this.getWindow();
+        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        w.setStatusBarColor(getResources().getColor(R.color.colorAccent));
+        w.setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
     }
 
     private void setupListeners() {
