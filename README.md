@@ -1,7 +1,9 @@
 # Notes
 This is not a project that belongs to the parent project. This is the original project: https://github.com/limboemu
 # What's new
-- Fixed UEFI not working on Android 13+.
+- Add animations.
+- Removed TCS disable dialog.
+- Some minor interface modifications.
 
 Notes
 - UEFI only works with 64-bit CPUs.
