@@ -146,12 +146,13 @@ public class Config {
     public static boolean showToast = false;
     public static boolean closeFileDescriptors = true;
 
+    public static String basefolder = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-    public static final String getCacheDir(){
+    public static  String getCacheDir(){
         return cacheDir.toString();
     }
-    public static final String getBasefileDir() {
-        return getCacheDir() + "/limbo/";
+    public static String getBasefileDir() {
+        return basefolder + "/limbo/";
     }
 
     public static String getTmpFolder() {

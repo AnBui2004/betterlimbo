@@ -915,7 +915,7 @@ public class VMExecutor {
             paramsList.add("virtio-rng-pci");
         }
 
-        if (anbuidata.getString("uefi", "").length() == 1) {
+        if (anbuidata.getString("uefi", "").length() == 1 && Double.parseDouble(anbuidata.getString("march", "")) > 0) {
             paramsList.add("-bios");
             paramsList.add("/storage/emulated/0/Android/data/com.limbo.emu.main/files/system/OVMF.fd");
         }

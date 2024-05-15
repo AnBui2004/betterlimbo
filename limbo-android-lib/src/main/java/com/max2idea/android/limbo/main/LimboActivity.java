@@ -41,6 +41,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.net.wifi.WifiManager.WifiLock;
@@ -316,12 +317,20 @@ public class LimboActivity extends AppCompatActivity {
     private TextView textview100;
     private CheckBox checkbox23;
 
+    private LinearLayout linear119;
+
     private LinearLayout linearballon;
 
     private boolean hideaan = false;
 
     private int posmachine = 0;
     private int possemachine = 0;
+
+    private int posmArch = 0;
+
+    private boolean allowaccesstostorage = true;
+
+    private boolean canstartnow = false;
 
     public static void quit() {
         activity.finish();
@@ -876,7 +885,7 @@ public class LimboActivity extends AppCompatActivity {
 
 
         mArch.setOnItemSelectedListener(new OnItemSelectedListener() {
-
+            @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // your code here
                 if (currMachine == null)
@@ -1001,6 +1010,17 @@ public class LimboActivity extends AppCompatActivity {
                 updateSummary(false);
 
                 machineLoaded = false;
+
+                if (position == 0 && possemachine > 0) {
+                    linear118.setAlpha(0.5F);
+                    if (checkbox23.isChecked()) {
+                        UIUtils.toastShort(LimboActivity.this, "UEFI will not be used because the CPU is not x64.");
+                    }
+                } else {
+                    linear118.setAlpha(1F);
+                }
+                posmArch = position;
+                anbuidata.edit().putString("march", String.valueOf((long)(posmArch))).commit();
             }
 
             @Override
@@ -1074,6 +1094,7 @@ public class LimboActivity extends AppCompatActivity {
         });
 
         mMachineType.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 if (currMachine == null)
                     return;
@@ -1086,9 +1107,12 @@ public class LimboActivity extends AppCompatActivity {
                 updateSummary(false);
 
                 if (position < 26 && possemachine > 0) {
+                    linear110.setAlpha(0.5F);
                     if (checkbox16.isChecked()) {
                         UIUtils.toastShort(LimboActivity.this, "Intel IOMMU will not work now because the machine type is not Q35.");
                     }
+                } else {
+                    linear110.setAlpha(1F);
                 }
                 posmachine = position;
                 anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
@@ -2140,11 +2164,13 @@ public class LimboActivity extends AppCompatActivity {
         activity = this;
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.limbo_main);
+        setupWidgets();
+        initialize(savedInstanceState);
+        initializeLogic();
         clearNotifications();
         setupStrictMode();
         setupFolders();
-        setContentView(R.layout.limbo_main);
-        setupWidgets();
         setupDiskMapping();
         createListeners();
         populateAttributes();
@@ -2154,9 +2180,6 @@ public class LimboActivity extends AppCompatActivity {
         checkLog();
         checkAndLoadLibs();
         setupLinks();
-        initialize(savedInstanceState);
-        initializeLogic();
-
     }
 
     private void grantpermissionnow() {
@@ -2219,6 +2242,7 @@ public class LimboActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                                checkper();
                             }
                         });
                         dialogthree.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -2236,6 +2260,7 @@ public class LimboActivity extends AppCompatActivity {
                         dialogthree.create().show();
                     } else {
                         ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+                        checkper();
                     }
                 }
             }
@@ -2330,6 +2355,7 @@ public class LimboActivity extends AppCompatActivity {
     private void createListeners() {
 
         mMachine.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
                 if (position == 0) {
@@ -2361,6 +2387,8 @@ public class LimboActivity extends AppCompatActivity {
                 }
                 updateSummary(false);
                 possemachine = position;
+                linear110.setAlpha(1F);
+                linear118.setAlpha(1F);
             }
 
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -2377,6 +2405,11 @@ public class LimboActivity extends AppCompatActivity {
 
         mStart.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
+
+                possemachine = mMachine.getSelectedItemPosition();
+                posmArch = mArch.getSelectedItemPosition();
+                anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
+                anbuidata.edit().putString("march", String.valueOf((long)(posmArch))).commit();
 
                 if (!Config.loadNativeLibsEarly && Config.loadNativeLibsMainThread) {
                     setupNativeLibs();
@@ -2586,11 +2619,6 @@ public class LimboActivity extends AppCompatActivity {
     public void hideToolbar() {
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         tb.setVisibility(View.GONE);
-
-        Window w = this.getWindow();
-        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        w.setNavigationBarColor(Color.parseColor("#151E25"));
     }
 
     public void _rroundup(final View _view) {
@@ -2661,8 +2689,17 @@ public class LimboActivity extends AppCompatActivity {
         imageview97 = findViewById(R.id.imageview97);
         textview100 = findViewById(R.id.textview100);
         checkbox23 = findViewById(R.id.checkbox23);
+        linear119 = findViewById(R.id.linear119);
 
         linearballon = findViewById(R.id.linearballon);
+
+        linear119.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View _view) {
+                anbuidata.edit().putString("managerallfile", "").commit();
+                grantpermissionnow();
+            }
+        });
 
         linear1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2703,6 +2740,7 @@ public class LimboActivity extends AppCompatActivity {
                     anbuidata.edit().putString("iommu", "1").commit();
                     anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
                     if (posmachine < 26 && possemachine > 0) {
+                        linear110.setAlpha(0.5F);
                         UIUtils.toastShort(LimboActivity.this, "Intel IOMMU will not work now because the machine type is not Q35.");
                     }
                 }
@@ -2809,6 +2847,10 @@ public class LimboActivity extends AppCompatActivity {
                     } else {
                         copyAssets();
                     }
+                    if (posmArch == 0 && possemachine > 0) {
+                        linear118.setAlpha(0.5F);
+                        UIUtils.toastShort(LimboActivity.this, "UEFI will not be used because the CPU is not x64.");
+                    }
                 }
                 else {
                     anbuidata.edit().putString("uefi", "").commit();
@@ -2818,6 +2860,12 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     private void initializeLogic() {
+        Window w = this.getWindow();
+        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            w.setNavigationBarColor(getColor(R.color.colorPrimary));
+        }
         hideaan = true;
         linear2.setVisibility(View.GONE);
 
@@ -2827,6 +2875,26 @@ public class LimboActivity extends AppCompatActivity {
         hideToolbar();
         Rround();
         Rrestore();
+
+        File directoryToStore;
+        directoryToStore = getBaseContext().getExternalFilesDir("system");
+        if (!directoryToStore.exists()) {
+            if (directoryToStore.mkdirs());
+        }
+
+        //if (Build.VERSION.SDK_INT > 32) {
+            //Config.basefolder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/com.limbo.emu.main/files/";
+        //}
+
+        if (anbuidata.getString("mmachine", "").length() == 0) {
+            anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
+        }
+
+        if (anbuidata.getString("march", "").length() == 0) {
+            anbuidata.edit().putString("march", String.valueOf((long)(posmArch))).commit();
+        }
+
+        checkper();
     }
     private void copyAssets() {
         AssetManager assetManager = getAssets();
@@ -2863,6 +2931,72 @@ public class LimboActivity extends AppCompatActivity {
         int read;
         while((read = in.read(buffer)) != -1){
             out.write(buffer, 0, read);
+        }
+    }
+
+    private void checkper() {
+        if (Build.VERSION.SDK_INT > 29) {
+            if (Environment.isExternalStorageManager()) {
+                allowaccesstostorage = true;
+                linear119.setVisibility(View.GONE);
+            } else {
+                allowaccesstostorage = false;
+            }
+        } else if (Build.VERSION.SDK_INT > 22) {
+            if (ContextCompat.checkSelfPermission(LimboActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                allowaccesstostorage = true;
+                linear119.setVisibility(View.GONE);
+            } else {
+                allowaccesstostorage = false;
+            }
+        }
+
+        if (allowaccesstostorage) {
+            File file = new File("/storage/emulated/0/limbo/bios.bin");
+            if(file.exists()) {
+
+            } else {
+                install(true);
+            }
+        }
+    }
+
+    private void beforestart() {
+        if (Double.parseDouble(Build.VERSION.SDK) > 22) {
+            if (allowaccesstostorage) {
+                File file = new File("/storage/emulated/0/limbo/bios.bin");
+                if (file.exists()) {
+                    canstartnow = true;
+                } else {
+                    canstartnow = false;
+                }
+            } else {
+                canstartnow = false;
+            }
+        } else {
+            File file = new File("/storage/emulated/0/limbo/bios.bin");
+            if(file.exists()) {
+                canstartnow = true;
+            } else {
+                canstartnow = false;
+            }
+        }
+
+        if (!canstartnow) {
+            dialogone = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+            dialogone.setTitle("Problem detected");
+            if (allowaccesstostorage) {
+                dialogone.setMessage("The required files are not installed yet, tap the install icon above and next to the menu icon to start the installation.");
+            } else {
+                dialogone.setMessage("Access to storage has not been granted, tap the warning above and allow.");
+            }
+            dialogone.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            dialogone.create().show();
         }
     }
 
@@ -3259,6 +3393,14 @@ public class LimboActivity extends AppCompatActivity {
     // Main event function
     // Retrives values from saved preferences
     private void onStartButton() {
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                beforestart();
+            }
+        });
+        if (!canstartnow) {
+            return;
+        }
 
         if (this.mMachine.getSelectedItemPosition() == 0 || this.currMachine == null ) {
             UIUtils.toastShort(activity, "Select or Create a Virtual Machine first");
@@ -6779,6 +6921,7 @@ public class LimboActivity extends AppCompatActivity {
         super.onResume();
         updateValues();
         execTimer();
+        checkper();
     }
 
     private void updateValues() {

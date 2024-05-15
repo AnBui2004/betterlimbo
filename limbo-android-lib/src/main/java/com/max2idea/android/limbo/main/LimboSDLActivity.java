@@ -935,7 +935,7 @@ public class LimboSDLActivity extends SDLActivity {
 		Window w = this.getWindow();
 		w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		w.setNavigationBarColor(Color.parseColor("#151E25"));
+		w.setNavigationBarColor(Color.parseColor("#000000"));
 	}
 
     private void createUI(int w, int h) {

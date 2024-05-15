@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.limbo.emu.main"
-    android:installLocation="auto"
     android:versionCode="50100"
     android:versionName="5.1.0-x86" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -70,7 +70,8 @@
         <activity
             android:name="com.max2idea.android.limbo.utils.LinksManager"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
-            android:label="Downloads" >
+            android:label="Downloads"
+            android:theme="@style/AppTheme2">
         </activity>
         <service
             android:name="com.max2idea.android.limbo.main.LimboService"
