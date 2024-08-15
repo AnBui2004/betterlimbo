@@ -784,7 +784,21 @@ public class VMExecutor {
             if (!hda_img_path.equals("")) {
                 param += ",file=" + hda_img_path;
             }
+            if (anbuidata.getString("daio", "").length() == 1) {
+                param += ",aio=threads";
+            }
+            if (anbuidata.getString("dcache", "").length() == 1) {
+                param += ",cache=writeback";
+            }
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                param += ",id=hda,if=none";
+            }
             paramsList.add(param);
+
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                paramsList.add("-device");
+                paramsList.add("virtio-blk-pci,drive=hda");
+            }
         }
 
         if (hdb_img_path != null) {
@@ -798,7 +812,21 @@ public class VMExecutor {
             if (!hdb_img_path.equals("")) {
                 param += ",file=" + hdb_img_path;
             }
+            if (anbuidata.getString("daio", "").length() == 1) {
+                param += ",aio=threads";
+            }
+            if (anbuidata.getString("dcache", "").length() == 1) {
+                param += ",cache=writeback";
+            }
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                param += ",id=hdb,if=none";
+            }
             paramsList.add(param);
+
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                paramsList.add("-device");
+                paramsList.add("virtio-blk-pci,drive=hdc");
+            }
         }
 
         if (hdc_img_path != null) {
@@ -812,7 +840,21 @@ public class VMExecutor {
             if (!hdc_img_path.equals("")) {
                 param += ",file=" + hdc_img_path;
             }
+            if (anbuidata.getString("daio", "").length() == 1) {
+                param += ",aio=threads";
+            }
+            if (anbuidata.getString("dcache", "").length() == 1) {
+                param += ",cache=writeback";
+            }
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                param += ",id=hdc,if=none";
+            }
             paramsList.add(param);
+
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                paramsList.add("-device");
+                paramsList.add("virtio-blk-pci,drive=hdc");
+            }
         }
 
         if (hdd_img_path != null) {
@@ -826,7 +868,21 @@ public class VMExecutor {
             if (!hdd_img_path.equals("")) {
                 param += ",file=" + hdd_img_path;
             }
+            if (anbuidata.getString("daio", "").length() == 1) {
+                param += ",aio=threads";
+            }
+            if (anbuidata.getString("dcache", "").length() == 1) {
+                param += ",cache=writeback";
+            }
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                param += ",id=hdd,if=none";
+            }
             paramsList.add(param);
+
+            if (anbuidata.getString("dvirtio", "").length() == 1) {
+                paramsList.add("-device");
+                paramsList.add("virtio-blk-pci,drive=hdd");
+            }
         } else if (shared_folder_path != null) {
             //XXX; We use hdd to mount any virtual fat drives
             paramsList.add("-drive"); //empty

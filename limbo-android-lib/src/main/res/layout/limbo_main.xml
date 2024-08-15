@@ -2341,6 +2341,99 @@
                                 android:textColor="#000000" />
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/lineardaio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageviewdaio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bios48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textviewdaio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Multi-threaded AIO mode for hard drives"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkboxdaio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lineardcache"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageviewdcache"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bios48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textviewdcache"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Write-back caching mode for hard drives"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkboxdcache"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lineardvirtio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/imageviewdvirtio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/bios48"
+                                android:scaleType="center" />
+                            <TextView
+                                android:id="@+id/textviewdvirtio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:text="Virtio BLK for hard drives"
+                                android:textSize="12sp"
+                                android:textColor="#FFFFFF"
+                                android:layout_weight="1" />
+                            <CheckBox
+                                android:id="@+id/checkboxdvirtio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                        <LinearLayout
                             android:id="@+id/linear110"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

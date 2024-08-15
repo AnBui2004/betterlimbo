@@ -316,6 +316,18 @@ public class LimboActivity extends AppCompatActivity {
     private ImageView imageview97;
     private TextView textview100;
     private CheckBox checkbox23;
+    private LinearLayout lineardaio;
+    private ImageView imageviewdaio;
+    private TextView textviewdaio;
+    private CheckBox checkboxdaio;
+    private LinearLayout lineardcache;
+    private ImageView imageviewdcache;
+    private TextView textviewdcache;
+    private CheckBox checkboxdcache;
+    private LinearLayout lineardvirtio;
+    private ImageView imageviewdvirtio;
+    private TextView textviewdvirtio;
+    private CheckBox checkboxdvirtio;
 
     private LinearLayout linear119;
 
@@ -2606,6 +2618,9 @@ public class LimboActivity extends AppCompatActivity {
         checkbox21.setChecked(anbuidata.getString("jitcache", "").length() == 1);
         checkbox22.setChecked(anbuidata.getString("dualm", "").length() == 1);
         checkbox23.setChecked(anbuidata.getString("uefi", "").length() == 1);
+        checkboxdaio.setChecked(anbuidata.getString("daio", "").length() == 1);
+        checkboxdcache.setChecked(anbuidata.getString("dcache", "").length() == 1);
+        checkboxdvirtio.setChecked(anbuidata.getString("dvirtio", "").length() == 1);
     }
 
     public void Rsave() {
@@ -2689,6 +2704,18 @@ public class LimboActivity extends AppCompatActivity {
         imageview97 = findViewById(R.id.imageview97);
         textview100 = findViewById(R.id.textview100);
         checkbox23 = findViewById(R.id.checkbox23);
+        lineardaio = findViewById(R.id.lineardaio);
+        imageviewdaio = findViewById(R.id.imageviewdaio);
+        textviewdaio = findViewById(R.id.textviewdaio);
+        checkboxdaio = findViewById(R.id.checkboxdaio);
+        lineardcache = findViewById(R.id.lineardcache);
+        imageviewdcache = findViewById(R.id.imageviewdcache);
+        textviewdcache = findViewById(R.id.textviewdcache);
+        checkboxdcache = findViewById(R.id.checkboxdcache);
+        lineardvirtio = findViewById(R.id.lineardvirtio);
+        imageviewdvirtio = findViewById(R.id.imageviewdvirtio);
+        textviewdvirtio = findViewById(R.id.textviewdvirtio);
+        checkboxdvirtio = findViewById(R.id.checkboxdvirtio);
         linear119 = findViewById(R.id.linear119);
 
         linearballon = findViewById(R.id.linearballon);
@@ -2854,6 +2881,42 @@ public class LimboActivity extends AppCompatActivity {
                 }
                 else {
                     anbuidata.edit().putString("uefi", "").commit();
+                }
+            }
+        });
+
+        checkboxdaio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("daio", "1").commit();
+                } else {
+                    anbuidata.edit().putString("daio", "").commit();
+                }
+            }
+        });
+
+        checkboxdcache.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("dcache", "1").commit();
+                } else {
+                    anbuidata.edit().putString("dcache", "").commit();
+                }
+            }
+        });
+
+        checkboxdvirtio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton _param1, boolean _param2) {
+                final boolean _isChecked = _param2;
+                if (_isChecked) {
+                    anbuidata.edit().putString("dvirtio", "1").commit();
+                } else {
+                    anbuidata.edit().putString("dvirtio", "").commit();
                 }
             }
         });
