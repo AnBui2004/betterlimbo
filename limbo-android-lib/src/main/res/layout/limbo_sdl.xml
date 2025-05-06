@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:src="@drawable/screen" />
+                android:src="@drawable/tv_24px" />
 
             <RelativeLayout
                 android:id="@+id/sdl"

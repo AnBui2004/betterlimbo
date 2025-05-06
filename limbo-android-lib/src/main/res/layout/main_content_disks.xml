@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/storagesectionl"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/home_card_style">
+
+    <LinearLayout
+        android:id="@+id/storageheaderl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/storagesectionStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Disks"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/storagesectionsummaryStr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:maxLines="3"
+            android:minLines="2"
+            android:padding="10dp"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/storagesectionDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/hdimgl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingLeft="8sp">
+
+            <CheckBox
+                android:id="@+id/hdimgcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="left|center_vertical"
+                android:paddingRight="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:src="@drawable/hard_drive_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/hdimgstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Hard Disk A: "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/hdimgval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hdbimgl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingLeft="8sp">
+
+            <CheckBox
+                android:id="@+id/hdbimgcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="left|center_vertical"
+                android:paddingRight="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:src="@drawable/hard_drive_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/hdbimgstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Hard Disk B: "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/hdbimgval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hdcimgl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingLeft="8sp">
+
+            <CheckBox
+                android:id="@+id/hdcimgcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="left|center_vertical"
+                android:paddingRight="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:src="@drawable/hard_drive_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/hdcimgstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Hard Disk C: "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/hdcimgval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hddimgl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingLeft="8sp">
+
+            <CheckBox
+                android:id="@+id/hddimgcheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="left|center_vertical"
+                android:paddingRight="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:src="@drawable/hard_drive_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/hddimgstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Hard Disk D: "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/hddimgval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearaioharddrive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewaioharddrive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/flyover_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewaioharddrive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Multi-threaded AIO mode for hard drives"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/checkboxaioharddrive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearcacheharddrive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewcacheharddrive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cached_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewcacheharddrive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Write-back caching mode for hard drives"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxcacheharddrive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearvirtioblkharddrives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewvirtioblkharddrives"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cable_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewvirtioblkharddrives"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="VirtIO BLK for hard drives"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxvirtioblkharddrives"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sharedfolderl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingLeft="8sp">
+
+            <CheckBox
+                android:id="@+id/sharedfoldercheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:gravity="left|center_vertical"
+                android:paddingRight="5dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="5dp"
+                android:src="@drawable/folder_data_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/sharedfolderstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Shared Folder "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/sharedfolderval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

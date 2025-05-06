@@ -54,7 +54,7 @@
 
                 android:layout_height="wrap_content"
 
-                android:src="@drawable/home"
+                android:src="@drawable/home_24px"
 
                 android:scaleType="center" />
 

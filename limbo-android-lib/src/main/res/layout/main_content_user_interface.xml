@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/userInterfaceSectionl"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical"
+    android:layout_marginBottom="4dp"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/home_card_style">
+
+
+    <LinearLayout
+        android:id="@+id/userinterfaceheaderl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/userInterfaceSectionStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8sp"
+            android:text="User Interface"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/uisectionsummaryStr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:maxLines="3"
+            android:minLines="2"
+            android:padding="10dp"
+            android:text=""/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/userInterfaceDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/uil"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/tv_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/uiStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Display "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/uival"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="8sp"
+                android:src="@drawable/keyboard_24px" />
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/keyboardstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keyboard"
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/keyboardval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/mouse"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/mouse_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/mousestr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mouse"
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/mouseval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/orientation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/screen_rotation_alt_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/orientationstr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orientation"
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/orientationval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp" />
+
+
+        <LinearLayout
+            android:id="@+id/uiscreen"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/uiscreenl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/showtoolbarl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8sp"
+                    android:paddingBottom="8sp"
+                    android:paddingRight="8sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/toolbar_24px"
+                        android:padding="8sp"/>
+
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:id="@+id/showtoolbarStr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Always Toolbar"
+                        android:layout_weight="1"
+                        android:padding="8sp"/>
+
+                    <CheckBox
+                        android:id="@+id/showtoolbarval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/desktopmodel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8sp"
+                    android:paddingBottom="8sp"
+                    android:paddingRight="8sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/desktop_windows_24px"
+                        android:padding="8sp"/>
+
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:id="@+id/desktopmodeStr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Desktop Mode"
+                        android:layout_weight="1"
+                        android:padding="8sp"/>
+
+                    <CheckBox
+                        android:id="@+id/desktopmodeval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/uiscreenr"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fullscreenl"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8sp"
+                    android:paddingBottom="8sp"
+                    android:paddingRight="8sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/fullscreen_24px"
+                        android:padding="8sp"/>
+
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:id="@+id/fullscreenstr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Fullscreen"
+                        android:layout_weight="1"
+                        android:padding="8sp"/>
+
+                    <CheckBox
+                        android:id="@+id/fullscreenval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/vncexternall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8sp"
+                    android:paddingBottom="8sp"
+                    android:paddingRight="8sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/cast_24px"
+                        android:padding="8sp"/>
+
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:id="@+id/vncExternalStr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="External VNC"
+                        android:layout_weight="1"
+                        android:padding="8sp"/>
+
+                    <CheckBox
+                        android:id="@+id/vncexternalval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/qmpexternall"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingTop="8sp"
+                    android:paddingBottom="8sp"
+                    android:paddingRight="8sp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/settings_remote_24px"
+                        android:padding="8sp"/>
+
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:id="@+id/qmpExternalStr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="External QMP"
+                        android:layout_weight="1"
+                        android:padding="8sp"/>
+
+                    <CheckBox
+                        android:id="@+id/qmpexternalval"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

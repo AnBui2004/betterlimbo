@@ -14,11 +14,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="#000"
             android:text="ISOs and Virtual Images"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold"
             android:padding="8dp"/>
 
         <ListView

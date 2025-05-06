@@ -355,6 +355,15 @@ public class FileManager extends ListActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (currentDir.getText().toString().equals("/storage/emulated/0/") || currentDir.getText().toString().equals("/storage/emulated/0") || currentDir.getText().toString().length() < 21) {
+            finish();
+        } else {
+            fillWithParent();
+        }
+    }
+
     private void checkPermissionsAndBrowse() {
 
         if (Build.VERSION.SDK_INT > 29) {
@@ -436,7 +445,7 @@ public class FileManager extends ListActivity {
 
 
         items = new ArrayList<String>();
-        items.add(".. (Parent Directory)");
+//        items.add(".. (Parent Directory)");
 
         if (files != null) {
             for (File file1 : files) {
@@ -464,9 +473,9 @@ public class FileManager extends ListActivity {
         super.onListItemClick(l, v, position, id);
         // int selectionRowID = (int) l.getSelectedItemId();
         int selectionRowID = (int) id;
-        if (selectionRowID == 0) {
-            fillWithParent();
-        } else {
+//        if (selectionRowID == 0) {
+//            fillWithParent();
+//        } else {
 
             file = new File(currdir.getPath() + "/" + items.get(selectionRowID));
             if (file == null) {
@@ -474,7 +483,7 @@ public class FileManager extends ListActivity {
             } else if (!file.isDirectory() && selectionMode == SelectionMode.DIRECTORY) {
                 UIUtils.toastShort(this, "Not a Directory");
             } else if (file.isDirectory()) {
-currdir = file;
+                currdir = file;
                 File[] files = file.listFiles();
                 if (files != null) {
                     currentDir.setText(file.getPath());
@@ -486,7 +495,7 @@ currdir = file;
                 this.selectFile();
             }
 
-        }
+        //}
     }
 
     private void fillWithParent() {
@@ -620,7 +629,7 @@ currdir = file;
 
             int iconRes = 0;
             if (files.get(position).startsWith("..") || files.get(position).endsWith("/"))
-                imageView.setImageResource(R.drawable.folder);
+                imageView.setImageResource(R.drawable.folder_24px);
             else {
                 iconRes = FileUtils.getIconForFile(files.get(position));
                 imageView.setImageResource(iconRes);

@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:src="@drawable/screen" />
+                    android:src="@drawable/tv_displays_24px" />
 
                 <android.androidVNC.VncCanvas
                     android:id="@+id/vnc_canvas"

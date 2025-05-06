@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:padding="2dip"
+    android:padding="8dp"
     android:theme="@style/Theme.AppCompat">
 
     <ScrollView
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="10dip">
+                android:padding="8sp">
 
 
                 <ImageView
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingRight="5dp"
-                    android:src="@drawable/cdrom" />
+                    android:src="@drawable/album_24px" />
 
                 <Spinner
                     android:id="@+id/cdromimgval"
@@ -40,8 +40,7 @@
                     android:ellipsize="start"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text=""
-                    android:textSize="15dip" />
+                    android:text="" />
             </LinearLayout>
 
             <LinearLayout
@@ -49,7 +48,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dip">
+                android:padding="8sp">
 
 
                 <ImageView
@@ -57,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingRight="5dp"
-                    android:src="@drawable/floppy" />
+                    android:src="@drawable/save_24px" />
 
                 <Spinner
                     android:id="@+id/floppyimgval"
@@ -67,8 +66,7 @@
                     android:ellipsize="start"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text=""
-                    android:textSize="15dip" />
+                    android:text="" />
             </LinearLayout>
 
             <LinearLayout
@@ -76,7 +74,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dip">
+                android:padding="8sp">
 
 
                 <ImageView
@@ -84,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingRight="5dp"
-                    android:src="@drawable/floppy" />
+                    android:src="@drawable/save_24px" />
 
 
                 <Spinner
@@ -95,8 +93,7 @@
                     android:ellipsize="start"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text=""
-                    android:textSize="15dip" />
+                    android:text="" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="10dip">
+                android:padding="8sp">
 
 
                 <ImageView
@@ -113,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:paddingRight="5dp"
-                    android:src="@drawable/sdcard" />
+                    android:src="@drawable/sd_card_24px" />
 
                 <Spinner
                     android:id="@+id/sdimgval"
@@ -123,8 +120,7 @@
                     android:ellipsize="start"
                     android:gravity="right"
                     android:singleLine="true"
-                    android:text=""
-                    android:textSize="15dip" />
+                    android:text="" />
             </LinearLayout>
 
         </LinearLayout>

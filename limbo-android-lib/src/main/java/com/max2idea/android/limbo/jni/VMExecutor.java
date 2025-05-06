@@ -662,13 +662,13 @@ public class VMExecutor {
             String tcgParams = "tcg";
             if (cpuNum > 1)
                 tcgParams += ",thread=multi";
-            if (anbuidata.getString("jitcache", "").length() == 1) {
+            if (anbuidata.getString("translationblock", "").length() == 1) {
                 tcgParams += (",tb-size=1024");
             }
             paramsList.add(tcgParams);
             //#endif
         } else {
-            if (anbuidata.getString("jitcache", "").length() == 1) {
+            if (anbuidata.getString("translationblock", "").length() == 1) {
                 paramsList.add("-accel");
                 paramsList.add("tcg,tb-size=1024");
             }

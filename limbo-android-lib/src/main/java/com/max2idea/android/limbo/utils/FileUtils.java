@@ -674,17 +674,17 @@ public class FileUtils {
         || ext.equals("qcow2") || ext.equals("vmdk") || ext.equals("vdi") || ext.equals("cow")
                 || ext.equals("dmg") || ext.equals("bochs") || ext.equals("vpc")
                 || ext.equals("vhd") || ext.equals("fs"))
-            return R.drawable.harddisk;
+            return R.drawable.hard_drive_24px;
         else if(ext.equals("iso"))
-            return R.drawable.cd;
+            return R.drawable.album_24px;
         else if(ext.equals("ima"))
-            return R.drawable.floppy;
+            return R.drawable.save_24px;
         else if(ext.equals("csv"))
-            return R.drawable.importvms;
+            return R.drawable.table_24px;
         else if(file.contains("kernel")  || file.contains("vmlinuz") || file.contains("initrd"))
-            return R.drawable.sysfile;
+            return R.drawable.settings_24px;
         else
-            return R.drawable.close;
+            return R.drawable.close_24px;
 
     }
 

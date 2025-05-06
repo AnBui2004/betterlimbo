@@ -69,7 +69,7 @@ public class LinksManager extends AppCompatActivity {
         Window w = this.getWindow();
         w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        w.setStatusBarColor(getResources().getColor(R.color.colorAccent));
+        w.setStatusBarColor(0xff000000);
         w.setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
     }
 
@@ -150,9 +150,9 @@ public class LinksManager extends AppCompatActivity {
             descrView.setText(linkInfo.descr);
 
             if(linkInfo.type == LinkType.ISO)
-                imageView.setImageResource(R.drawable.cd);
+                imageView.setImageResource(R.drawable.album_24px);
             else if(linkInfo.type == LinkType.TOOL)
-                imageView.setImageResource(R.drawable.advanced);
+                imageView.setImageResource(R.drawable.build_24px);
 
             return rowView;
         }

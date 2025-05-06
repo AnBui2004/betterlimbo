@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cpusectionl"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:gravity="center|center_vertical"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/home_card_style">
+
+    <LinearLayout
+        android:id="@+id/cpusectionheaderl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/cpusectionStr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8sp"
+            android:text="CPU/Board"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/cpusectionsummaryStr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:maxLines="3"
+            android:minLines="2"
+            android:padding="10dp"
+            android:text=""/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cpusectionDetails"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/archtypel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/architecture_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/archtypeStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Architecture:"
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/archtypeval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/machinetypel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/developer_board_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/machinetypeStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Machine Type:"
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/machinetypeval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cpul"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/memory_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/cpuStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="CPU Model: "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/cpuval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cpunuml"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/flyover_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/cpunumStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="CPU Cores: "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/cpunumval"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rammeml"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/memory_alt_24px"
+                android:padding="8sp"/>
+
+            <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/rammemStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="RAM Memory (MB) "
+                android:padding="8sp"/>
+
+            <Spinner
+                android:id="@+id/rammemval"
+                android:layout_width="172dp"
+                android:layout_height="19dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:singleLine="true"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/accell"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/mttcgl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/bolt_24px"
+                    android:padding="8sp"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/enablemttcgstr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable MTTCG"
+                    android:padding="8sp"
+                    android:layout_weight="1"/>
+
+                <CheckBox
+                    android:id="@+id/enablemttcgval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:gravity="right|center_vertical" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/kvml"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/rocket_launch_24px"
+                    android:padding="8sp"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/enablekvmstr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable KVM"
+                    android:layout_weight="1"
+                    android:padding="8sp"/>
+
+                <CheckBox
+                    android:id="@+id/enablekvmval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:gravity="right|center_vertical" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lineartranslationblock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+
+            <ImageView
+                android:id="@+id/imageviewtranslationblock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/open_run_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewtranslationblock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Translation Block (1024 micro-ops)"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxtranslationblock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearinteliommu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewinteliommu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/compare_arrows_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewinteliommu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Intel IOMMU (Only works on Q35 machines)"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxinteliommu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearvirtioballoon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewvirtioballoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/memory_alt_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewvirtioballoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="VirtIO Memory Ballooning"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxvirtioballoon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearvirtioserial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewvirtioserial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sync_alt_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewvirtioserial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="VirtIO Serial"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxvirtioserial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearvirtiorng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewvirtiorng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pin_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewvirtiorng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="VirtIO Random Number Generator"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxvirtiorng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lineardualchannelmemory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8sp"
+            android:paddingBottom="8sp"
+            android:paddingRight="8sp">
+            <ImageView
+                android:id="@+id/imageviewdualchannelmemory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/splitscreen_24px"
+                android:scaleType="center"
+                android:padding="8sp"/>
+            <TextView
+                android:id="@+id/textviewdualchannelmemory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Dual channel memory"
+                android:textColor="#FFFFFF"
+                android:layout_weight="1" />
+            <CheckBox
+                android:id="@+id/checkboxdualchannelmemory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timersl"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/hpetl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/schedule_24px"
+                    android:padding="8sp"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/hpetStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disable HPET"
+                    android:layout_weight="1"
+                    android:padding="8sp"/>
+
+                <CheckBox
+                    android:id="@+id/hpetval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:gravity="right|center_vertical" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/tscl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/code_24px"
+                    android:padding="8sp"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/tscStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable AVX"
+                    android:layout_weight="1"
+                    android:padding="8sp"/>
+
+                <CheckBox
+                    android:id="@+id/tscval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:gravity="right|center_vertical" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/othersl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearballon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp"
+                android:visibility="gone">
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/textballon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VirtIO Memory"
+                    android:padding="8sp"
+                    android:layout_weight="1"/>
+
+                <CheckBox
+                    android:id="@+id/ballon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:gravity="right|center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/acpil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/home_iot_device_24px"
+                    android:padding="8sp"/>
+
+                <TextView
+                    android:textColor="@android:color/white"
+                    android:id="@+id/acpiStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disable ACPI"
+                    android:padding="8sp"
+                    android:layout_weight="1"/>
+
+                <CheckBox
+                    android:id="@+id/acpival"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:gravity="right|center_vertical" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

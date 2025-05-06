@@ -5,7 +5,7 @@ plugins {
 
 android {
     compileSdkVersion 34
-    buildToolsVersion '33.0.1'
+    buildToolsVersion '34.0.0'
     namespace 'com.limbo.emu.main'
 
     defaultConfig {
@@ -14,9 +14,17 @@ android {
         targetSdkVersion 34
         ndk { abiFilters "armeabi-v7a","arm64-v8a", "x86", "x86_64" }
     }
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+            universalApk true
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
