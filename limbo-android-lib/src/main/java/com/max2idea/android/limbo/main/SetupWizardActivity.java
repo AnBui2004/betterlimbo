@@ -128,6 +128,7 @@ public class SetupWizardActivity extends AppCompatActivity {
             stepstoragepermission.setVisibility(VISIBLE);
             checkstepstoragepermission();
         } else if (stephelp.getVisibility() == GONE) {
+            nextbutton.setVisibility(VISIBLE);
             stephelp.setVisibility(VISIBLE);
         } else if (stepchangelog.getVisibility() == GONE) {
             stepchangelog.setVisibility(VISIBLE);
