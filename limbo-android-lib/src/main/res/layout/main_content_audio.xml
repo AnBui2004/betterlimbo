@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/audiosectionl"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -7,80 +7,84 @@
     android:layout_marginBottom="4dp"
     android:gravity="center|center_vertical"
     android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    android:background="@drawable/home_card_style">
-
+    android:animateLayoutChanges="true">
 
     <LinearLayout
-        android:id="@+id/audioheaderl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:textColor="@android:color/white"
-            android:id="@+id/audiosectionStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Audio"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:textColor="@android:color/white"
-            android:id="@+id/audiosectionsummaryStr"
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
+        <LinearLayout
+            android:id="@+id/audioheaderl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:maxLines="3"
-            android:minLines="2"
-            android:padding="10dp"
-            android:text="" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/audiosectionStr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Audio"
+                android:textSize="18sp" />
 
-    <LinearLayout
-        android:id="@+id/audiosectionDetails"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/audiosectionsummaryStr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:maxLines="3"
+                android:minLines="2"
+                android:padding="10dp"
+                android:text="" />
+
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/soundcfgl"
+            android:id="@+id/audiosectionDetails"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingRight="5dp"
-                android:src="@drawable/volume_up_24px"
-                android:padding="8sp" />
-
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/soundcfgStr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Sound Card: "
-                android:padding="8sp" />
-
-            <Spinner
-                android:id="@+id/soundcfgval"
+            <LinearLayout
+                android:id="@+id/soundcfgl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:gravity="right"
-                android:singleLine="true"
-                android:text="" />
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingRight="5dp"
+                    android:src="@drawable/volume_up_24px"
+                    android:padding="8sp" />
+
+                <TextView
+                    android:id="@+id/soundcfgStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Sound Card: "
+                    android:padding="8sp" />
+
+                <Spinner
+                    android:id="@+id/soundcfgval"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

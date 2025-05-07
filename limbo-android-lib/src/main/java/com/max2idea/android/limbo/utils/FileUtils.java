@@ -374,7 +374,8 @@ public class FileUtils {
             public void run() {
 
                 if (Config.viewLogInternally) {
-                    UIUtils.UIAlertLog(activity, "Limbo Log", contentsFormatted);
+                    UIUtils.copyDialog("Log", contentsFormatted.toString(), activity);
+//                    UIUtils.UIAlertLog(activity, "Limbo Log", contentsFormatted);
                 } else {
                     try {
                         Intent intent = new Intent(Intent.ACTION_EDIT);

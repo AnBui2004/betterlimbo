@@ -33,6 +33,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.limbo.emu.lib.R;
+import com.max2idea.android.limbo.utils.UIUtils;
 
 public class LimboSettingsManager extends PreferenceActivity {
 
@@ -151,10 +152,7 @@ public class LimboSettingsManager extends PreferenceActivity {
 		Intent data = new Intent();
 		setResult(Config.SETTINGS_RETURN_CODE, data);
 		addPrefs();
-        Window w = this.getWindow();
-        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        w.setNavigationBarColor(Color.parseColor("#151E25"));
+        UIUtils.dynamicSetLightStatusBar(this);
 	}
 
 	public void addPrefs() {

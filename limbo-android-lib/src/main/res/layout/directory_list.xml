@@ -42,8 +42,6 @@
 
                 android:textSize="16sp"
 
-                android:textColor="@android:color/white"
-
                 android:layout_weight="1" />
 
             <ImageView

@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:background="@color/colorPrimary"
 	android:orientation="vertical"
 	android:padding="5dip"
 	android:theme="@style/AppTheme">
@@ -11,8 +10,7 @@
 		android:id="@+id/textRepeaterCaption"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/repeater_caption"
-		android:textColor="@android:color/white" />
+		android:text="@string/repeater_caption" />
 
 	<EditText
 		android:id="@+id/textRepeaterInfo"

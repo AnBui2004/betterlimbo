@@ -1075,6 +1075,10 @@ public class VMExecutor {
         }
     }
 
+    public void doQuit() {
+        QmpClient.sendCommand(QmpClient.quit());
+    }
+
     public String savevm(String statename) {
         // Set to delete previous snapshots after vm resumed
         Log.v(TAG, "Save Snapshot");

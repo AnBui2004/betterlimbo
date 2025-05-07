@@ -274,4 +274,9 @@ public class QmpClient {
 		return "{ \"execute\": \"query-status\" }";
 
 	}
+
+	public static String quit() {
+		return "{ \"execute\": \"quit\" }";
+
+	}
 }

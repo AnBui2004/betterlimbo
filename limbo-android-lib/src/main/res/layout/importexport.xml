@@ -3,10 +3,8 @@
 	android:id="@+id/dialogImportExport"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:background="@color/colorPrimary"
 	android:gravity="center|center_vertical"
-	android:padding="5dip"
-	android:theme="@style/AppTheme">
+	android:padding="5dip">
 
 	<TableRow>
 

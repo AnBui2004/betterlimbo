@@ -2,7 +2,6 @@
     android:id="@+id/dialog"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="2dip"
     android:theme="@style/AppTheme">
@@ -20,8 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/isos_and_tools_descr"
-            android:textColor="@android:color/white" />
+            android:text="@string/isos_and_tools_descr" />
 
     </LinearLayout>
 

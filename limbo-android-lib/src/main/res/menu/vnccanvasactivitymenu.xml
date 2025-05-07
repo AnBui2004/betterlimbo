@@ -4,74 +4,74 @@
 
     <item
         android:id="@+id/itemKeyboard"
-        android:icon="@drawable/keyboard"
+        android:icon="@drawable/keyboard_24px"
         android:title="@string/showkbd_label"/>
     <item
         android:id="@+id/itemCenterMouse"
-        android:icon="@drawable/mouse"
+        android:icon="@drawable/mouse_24px"
         android:title="@string/center_mouse"/>
     <item
         android:id="@+id/itemDrives"
-        android:icon="@drawable/stack"
+        android:icon="@drawable/hard_drive_24px"
         android:title="@string/drives"/>
 
 
     <item
         android:id="@+id/itemDisplay"
-        android:icon="@drawable/screen"
+        android:icon="@drawable/tv_24px"
         android:title="@string/display"/>
 
 
     <item
         android:id="@+id/itemMonitor"
-        android:icon="@drawable/terminal"
+        android:icon="@drawable/terminal_24px"
         android:title="@string/monitor">
     </item>
 
     <item
         android:id="@+id/itemHideToolbar"
-        android:icon="@drawable/fittowidth"
+        android:icon="@drawable/fullscreen_24px"
         android:title="@string/hide_toolbar"/>
     <item
         android:id="@+id/itemReconnect"
-        android:icon="@drawable/refresh"
+        android:icon="@drawable/refresh_24px"
         android:title="@string/reconnect"/>
 
     <item
         android:id="@+id/itemDisconnect"
-        android:icon="@drawable/disconnect"
+        android:icon="@drawable/close_24px"
         android:title="@string/disconnect">
     </item>
 
     <item
         android:id="@+id/itemCalibrateMouse"
-        android:icon="@drawable/mouse"
+        android:icon="@drawable/mouse_24px"
         android:title="@string/calibrate_mouse">
     </item>
 
     <item
         android:id="@+id/itemSaveState"
-        android:icon="@drawable/pause"
+        android:icon="@drawable/pause_24px"
         android:title="@string/save_state"/>
 
     <item
         android:id="@+id/itemReset"
-        android:icon="@drawable/reset"
+        android:icon="@drawable/refresh_24px"
         android:title="@string/reset"/>
     <item
         android:id="@+id/itemShutdown"
-        android:icon="@drawable/shutdown"
+        android:icon="@drawable/power_settings_new_24px"
         android:title="@string/shutdown"/>
 
 
     <item
         android:id="@+id/itemViewLog"
-        android:icon="@drawable/ui"
+        android:icon="@drawable/notes_24px"
         android:title="@string/view_log"/>
 
     <item
         android:id="@+id/itemHelp"
-        android:icon="@drawable/help"
+        android:icon="@drawable/help_24px"
         android:title="@string/help">
     </item>
 
@@ -80,19 +80,19 @@
 
     <item
         android:id="@+id/itemColorMode"
-        android:icon="@drawable/colormode"
+        android:icon="@drawable/gradient_24px"
         android:title="@string/color_mode">
     </item>
 
 
     <item
         android:id="@+id/itemFullScreen"
-        android:icon="@drawable/fittowidth"
+        android:icon="@drawable/fullscreen_24px"
         android:title="@string/toggle_full_screen"/>
 
     <item
         android:id="@+id/itemInputMode"
-        android:icon="@drawable/importvms"
+        android:icon="@drawable/exit_to_app_24px"
         android:title="@string/input_mode">
         <menu>
             <group android:checkableBehavior="single" >
@@ -123,7 +123,7 @@
     </item>
     <item
         android:id="@+id/itemScaling"
-        android:icon="@drawable/zoomin"
+        android:icon="@drawable/zoom_in_24px"
         android:title="@string/scaling">
         <menu>
             <group
@@ -146,24 +146,24 @@
     <item
         android:id="@+id/itemEnterText"
         android:alphabeticShortcut="e"
-        android:icon="@drawable/handwithpen"
+        android:icon="@drawable/edit_24px"
         android:title="@string/enter_text"/>
 
     <item
         android:id="@+id/itemSpecialKeys"
-        android:icon="@drawable/keypad"
+        android:icon="@drawable/keyboard_24px"
         android:title="@string/special_keys"/>
     <item
         android:id="@+id/itemSendKeyAgain"
         android:title="@string/send_key_again"/>
     <item
         android:id="@+id/itemCtrlC"
-        android:icon="@drawable/copy"
+        android:icon="@drawable/content_copy_24px"
         android:title="@string/ctrl_c"/>
 
     <item
         android:id="@+id/itemCtrlAltDel"
-        android:icon="@drawable/siren"
+        android:icon="@drawable/error_24px"
         android:title="@string/ctrl_alt_del"/>
 
 </menu>

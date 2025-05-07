@@ -2,12 +2,15 @@ package com.max2idea.android.limbo.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
@@ -22,6 +25,8 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.ArrayAdapter;
@@ -32,6 +37,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.main.Config;
 import com.max2idea.android.limbo.main.LimboActivity;
@@ -47,7 +53,11 @@ import java.util.Scanner;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 public class UIUtils {
 
@@ -334,8 +344,9 @@ public class UIUtils {
         }
         FileUtils fileutils = new FileUtils();
         try {
-            UIUtils.UIAlert(activity,"CHANGELOG", fileutils.LoadFile(activity, "CHANGELOG", false),
-                    0, false, "OK", null, null, null, null, null);
+//            UIUtils.UIAlert(activity,"CHANGELOG", fileutils.LoadFile(activity, "CHANGELOG", false),
+//                    0, false, "OK", null, null, null, null, null);
+            oneDialog("Changelog",fileutils.LoadFile(activity, "CHANGELOG", false), true, R.drawable.edit_note_24px, true, false, activity);
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -401,55 +412,76 @@ public class UIUtils {
             e.printStackTrace();
         }
 
-        final AlertDialog alertDialog;
-        alertDialog = new AlertDialog.Builder(activity).create();
-        alertDialog.setTitle(Config.APP_NAME + " v" + pInfo.versionName);
+//        final AlertDialog alertDialog;
+//        alertDialog = new AlertDialog.Builder(activity).create();
+//        alertDialog.setTitle(Config.APP_NAME + " v" + pInfo.versionName);
+//
+//        LinearLayout mLayout = new LinearLayout(activity);
+//        mLayout.setOrientation(LinearLayout.VERTICAL);
+//        TextView textView = new TextView(activity);
+//        textView.setBackgroundColor(Color.WHITE);
+//        textView.setTextColor(Color.BLACK);
+//        textView.setTextSize(15);
+//        textView.setText("Welcome to Limbo Emulator, a port of QEMU for Android devices. " +
+//                "Limbo can emulate light weight operating systems by loading and running virtual disks images. " +
+//                "\n\nFor Downloads, Guides, Help, ISO, and Virtual Disk images visit the Limbo Wiki. " +
+//                "Make sure you always download isos and images only from websites you trust, generally use at your own risk.");
+//        textView.setPadding(20, 20, 20, 20);
+//        ScrollView scrollView = new ScrollView(activity);
+//        scrollView.setLayoutParams(new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT, 300));
+//        scrollView.addView(textView);
+//        mLayout.addView(scrollView);
+//
+//        CheckBox checkUpdates= new CheckBox(activity);
+//        checkUpdates.setText("Check for Updates on Startup");
+//        checkUpdates.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                LimboSettingsManager.setPromptUpdateVersion(activity, b);
+//            }
+//        });
+//        checkUpdates.setChecked(true);
+//        mLayout.addView(checkUpdates);
+//        alertDialog.setView(mLayout);
+//
+//        // alertDialog.setMessage(body);
+//        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Go To Wiki",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        UIUtils.openURL(activity, Config.guidesLink);
+//                    }
+//                });
+//
+//        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "OK",
+//                new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//        alertDialog.show();
 
-        LinearLayout mLayout = new LinearLayout(activity);
-        mLayout.setOrientation(LinearLayout.VERTICAL);
-        TextView textView = new TextView(activity);
-        textView.setBackgroundColor(Color.WHITE);
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(15);
-        textView.setText("Welcome to Limbo Emulator, a port of QEMU for Android devices. " +
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
+        dialog.setTitle(Config.APP_NAME + " " + pInfo.versionName);
+        dialog.setIcon(R.drawable.help_24px);
+        dialog.setMessage("Welcome to Limbo Emulator, a port of QEMU for Android devices. " +
                 "Limbo can emulate light weight operating systems by loading and running virtual disks images. " +
                 "\n\nFor Downloads, Guides, Help, ISO, and Virtual Disk images visit the Limbo Wiki. " +
                 "Make sure you always download isos and images only from websites you trust, generally use at your own risk.");
-        textView.setPadding(20, 20, 20, 20);
-        ScrollView scrollView = new ScrollView(activity);
-        scrollView.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 300));
-        scrollView.addView(textView);
-        mLayout.addView(scrollView);
-
-        CheckBox checkUpdates= new CheckBox(activity);
-        checkUpdates.setText("Check for Updates on Startup");
-        checkUpdates.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        dialog.setPositiveButton("Go to wiki", new DialogInterface.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                LimboSettingsManager.setPromptUpdateVersion(activity, b);
+            public void onClick(DialogInterface dialog, int which) {
+                UIUtils.openURL(activity, Config.guidesLink);
             }
         });
-        checkUpdates.setChecked(true);
-        mLayout.addView(checkUpdates);
-        alertDialog.setView(mLayout);
 
-        // alertDialog.setMessage(body);
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Go To Wiki",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        UIUtils.openURL(activity, Config.guidesLink);
-                    }
-                });
+        dialog.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-        alertDialog.show();
-
+            }
+        });
+        dialog.show();
 
     }
 
@@ -568,22 +600,17 @@ public class UIUtils {
 
 	public static void promptNewVersion(final Activity activity, String version) {
 
-		final AlertDialog alertDialog;
-		alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_DARK).create();
-		alertDialog.setTitle("New Version " + version);
-		TextView stateView = new TextView(activity);
-		stateView.setText("There is a new version available with fixes and new features. Do you want to update?");
-		stateView.setPadding(20, 20, 20, 20);
-		alertDialog.setView(stateView);
-
-		// alertDialog.setMessage(body);
-		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Get New Version",
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(activity);
+        dialog.setIcon(R.drawable.arrow_downward_24px);
+		dialog.setTitle("New version available");
+        dialog.setMessage("Version " + version + " has been released with better experience. Do you want to update?");
+		dialog.setPositiveButton("Get it now",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
                         openURL(activity, Config.downloadLink);
 					}
 				});
-		alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Don't Show Again",
+		dialog.setNegativeButton("Don't show again",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
 
@@ -592,38 +619,109 @@ public class UIUtils {
 
 					}
 				});
-		alertDialog.show();
+		dialog.show();
 
 	}
 
-	public static void promptShowLog(final Activity activity) {
+	public static void promptShowLog(final Activity _context) {
 
-		final AlertDialog alertDialog;
-		alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_DARK).create();
-		alertDialog.setTitle("Show log");
-		TextView stateView = new TextView(activity);
-		stateView.setText("Something happened during last run, do you want to see the log?");
-		stateView.setPadding(20, 20, 20, 20);
-		alertDialog.setView(stateView);
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
+        dialog.setTitle("Show log");
+        dialog.setMessage("Something happened during last run, do you want to see the log?");
+        dialog.setIcon(R.drawable.help_24px);
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FileUtils.viewLimboLog(_context);
+            }
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
-		// alertDialog.setMessage(body);
-		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        dialog.show();
 
-					    FileUtils.viewLimboLog(activity);
-					}
-				});
-		alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel",
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int which) {
-
-
-					}
-				});
-		alertDialog.show();
+//		final AlertDialog alertDialog;
+//		alertDialog = new AlertDialog.Builder(activity, AlertDialog.THEME_DEVICE_DEFAULT_DARK).create();
+//		alertDialog.setTitle("Show log");
+//		TextView stateView = new TextView(activity);
+//		stateView.setText("Something happened during last run, do you want to see the log?");
+//		stateView.setPadding(20, 20, 20, 20);
+//		alertDialog.setView(stateView);
+//
+//		// alertDialog.setMessage(body);
+//		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes",
+//				new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int which) {
+//					    FileUtils.viewLimboLog(activity);
+//					}
+//				});
+//		alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel",
+//				new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int which) {
+//
+//
+//					}
+//				});
+//		alertDialog.show();
 
 	}
 
+    public static void oneDialog(String _title, String _message, boolean _isicon, int _iconid, boolean _cancel, boolean _finish, Activity _context) {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
+        dialog.setTitle(_title);
+        dialog.setMessage(_message);
+        if (_isicon) {
+            dialog.setIcon(_iconid);
+        }
+        if (!_cancel) {
+            dialog.setCancelable(false);
+        }
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (_finish) {
+                    _context.finish();
+                }
+            }
+        });
+        dialog.show();
+    }
 
+    public static void copyDialog(String _title, String _message, Activity _context) {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
+        dialog.setTitle(_title);
+        dialog.setMessage(_message);
+        dialog.setIcon(R.drawable.notes_24px);
+        dialog.setPositiveButton("Copy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                ClipboardManager clipboard = (ClipboardManager) _context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText(_title, _message);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(_context, "Copied.", Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.show();
+    }
+
+    public static void dynamicSetLightStatusBar(Activity _activity) {
+        Window window = _activity.getWindow();
+        View decorView = window.getDecorView();
+        int currentNightMode = _activity.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+        if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
+    }
 }

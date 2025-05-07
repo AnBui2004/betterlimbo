@@ -1,254 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bootSectionl"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center|center_vertical"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
     android:gravity="center|center_vertical"
     android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    android:background="@drawable/home_card_style">
-
+    android:animateLayoutChanges="true">
 
     <LinearLayout
-        android:id="@+id/bootheaderl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:textColor="@android:color/white"
-            android:id="@+id/bootsectionStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Boot"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:textColor="@android:color/white"
-            android:id="@+id/bootsectionsummaryStr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:maxLines="3"
-            android:minLines="2"
-            android:padding="10dp"
-            android:text="" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bootsectionDetails"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:animateLayoutChanges="true">
         <LinearLayout
-            android:id="@+id/linearuseuefi"
+            android:id="@+id/bootheaderl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp"
-            android:paddingRight="8sp">
-            <ImageView
-                android:id="@+id/imageviewuseuefi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/memory_alt_24px"
-                android:scaleType="center"
-                android:padding="8sp" />
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
             <TextView
-                android:id="@+id/textviewuseuefi"
+                android:id="@+id/bootsectionStr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="UEFI (Only works on x64 CPUs)"
-                android:textColor="#FFFFFF"
-                android:layout_weight="1" />
-            <CheckBox
-                android:id="@+id/checkboxuseuefi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000" />
-        </LinearLayout>
+                android:text="Boot"
+                android:textSize="18sp" />
 
-        <LinearLayout
-            android:id="@+id/linearbootmenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp"
-            android:paddingRight="8sp">
-            <ImageView
-                android:id="@+id/imageviewbootmenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/menu_24px"
-                android:scaleType="center"
-                android:padding="8sp"/>
-            <TextView
-                android:id="@+id/textviewbootmenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Boot menu"
-                android:textColor="#FFFFFF"
-                android:layout_weight="1" />
-            <CheckBox
-                android:id="@+id/checkboxbootmenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/bootfroml"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/play_arrow_24px"
-                android:padding="8sp" />
 
             <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/bootfromstr"
-                android:layout_width="wrap_content"
+                android:id="@+id/bootsectionsummaryStr"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Boot from Device: "
-                android:padding="8sp" />
-
-            <Spinner
-                android:id="@+id/bootfromval"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:gravity="right"
-                android:singleLine="true"
+                android:maxLines="3"
+                android:minLines="2"
+                android:padding="10dp"
                 android:text="" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/kernell"
+            android:id="@+id/bootsectionDetails"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearuseuefi"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/settings_24px"
-                android:padding="8sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+                <ImageView
+                    android:id="@+id/imageviewuseuefi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/memory_alt_24px"
+                    android:scaleType="center"
+                    android:padding="8sp" />
+                <TextView
+                    android:id="@+id/textviewuseuefi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="UEFI (Only works on x64 CPUs)"
+                    android:layout_weight="1" />
+                <CheckBox
+                    android:id="@+id/checkboxuseuefi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/kernelStr"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearbootmenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Kernel: "
-                android:padding="8sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+                <ImageView
+                    android:id="@+id/imageviewbootmenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/menu_24px"
+                    android:scaleType="center"
+                    android:padding="8sp"/>
+                <TextView
+                    android:id="@+id/textviewbootmenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Boot menu"
+                    android:layout_weight="1" />
+                <CheckBox
+                    android:id="@+id/checkboxbootmenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/kernelval"
+            <LinearLayout
+                android:id="@+id/bootfroml"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/play_arrow_24px"
+                    android:padding="8sp" />
+
+                <TextView
+                    android:id="@+id/bootfromstr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Boot from Device: "
+                    android:padding="8sp" />
+
+                <Spinner
+                    android:id="@+id/bootfromval"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/kernell"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:gravity="right"
-                android:singleLine="true"
-                android:text="" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
 
-        <LinearLayout
-            android:id="@+id/initrdl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/settings_24px"
+                    android:padding="8sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/settings_24px"
-                android:padding="8sp" />
+                <TextView
+                    android:id="@+id/kernelStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Kernel: "
+                    android:padding="8sp" />
 
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/initrdStr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Initrd: "
-                android:padding="8sp" />
+                <Spinner
+                    android:id="@+id/kernelval"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/initrdval"
+            <LinearLayout
+                android:id="@+id/initrdl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:gravity="right"
-                android:singleLine="true"
-                android:text="" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
 
-        <LinearLayout
-            android:id="@+id/appendl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp"
-            android:paddingRight="8sp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/settings_24px"
+                    android:padding="8sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/edit_24px"
-                android:padding="8sp"/>
+                <TextView
+                    android:id="@+id/initrdStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Initrd: "
+                    android:padding="8sp" />
 
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/appendStr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Append: "
-                android:padding="8sp" />
+                <Spinner
+                    android:id="@+id/initrdval"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/appendval"
+            <LinearLayout
+                android:id="@+id/appendl"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:hint="ie: root=/dev/sda1"
-                android:inputType="textFilter|textNoSuggestions"
-                android:singleLine="true"
-                android:text="" />
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/edit_24px"
+                    android:padding="8sp"/>
+
+                <TextView
+                    android:id="@+id/appendStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Append: "
+                    android:padding="8sp" />
+
+                <EditText
+                    android:id="@+id/appendval"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:hint="ie: root=/dev/sda1"
+                    android:inputType="textFilter|textNoSuggestions"
+                    android:singleLine="true"
+                    android:text="" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

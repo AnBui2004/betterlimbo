@@ -29,6 +29,8 @@ import android.app.AlertDialog;
 import android.app.Application;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
@@ -56,6 +58,7 @@ import android.os.StrictMode;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MenuItemCompat;
@@ -86,7 +89,9 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.jni.VMExecutor;
 import com.max2idea.android.limbo.utils.FavOpenHelper;
@@ -97,7 +102,9 @@ import com.max2idea.android.limbo.utils.LinksManager;
 import com.max2idea.android.limbo.utils.Machine;
 import com.max2idea.android.limbo.utils.MachineOpenHelper;
 import com.max2idea.android.limbo.utils.OSDialogBox;
+import com.max2idea.android.limbo.utils.PermisionUtils;
 import com.max2idea.android.limbo.utils.QmpClient;
+import com.max2idea.android.limbo.utils.SharedPreferencesUtils;
 import com.max2idea.android.limbo.utils.UIUtils;
 import com.max2idea.android.limbo.utils.UIUtils.LimboFileSpinnerAdapter;
 
@@ -272,7 +279,7 @@ public class LimboActivity extends AppCompatActivity {
     private CheckBox mballon;
     private TextView mtextballon;
 
-    private LinearLayout linear3;
+    private CardView linear3;
     private LinearLayout linear1;
     private LinearLayout linear2;
     private TextView textview1;
@@ -306,9 +313,8 @@ public class LimboActivity extends AppCompatActivity {
 
     private int posmArch = 0;
 
-    private boolean allowaccesstostorage = true;
-
-    private boolean canstartnow = false;
+    private boolean notificationPermissionStatus = false;
+    private boolean storagePermissionStatus = false;
 
     public static void quit() {
         activity.finish();
@@ -2158,119 +2164,7 @@ public class LimboActivity extends AppCompatActivity {
         checkLog();
         checkAndLoadLibs();
         setupLinks();
-    }
-
-    private void grantpermissionnow() {
-
-        anbuidata = getSharedPreferences("adata", Activity.MODE_PRIVATE);
-
-        if (anbuidata.getString("welcome", "").length() == 0) {
-            dialogone = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-            dialogone.setTitle("Welcome");
-            dialogone.setMessage("Welcome to Limbo PC Emulator with a new modern icon pack and works better with Android 10 and above! From Nguyen Bao An Bui.");
-            dialogone.setPositiveButton("Close", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    anbuidata.edit().putString("welcome", "1").commit();
-                }
-            });
-            dialogone.create().show();
-        }
-
-        if (Build.VERSION.SDK_INT > 29) {
-            if (anbuidata.getString("managerallfile", "").length() == 0) {
-                if (Environment.isExternalStorageManager()) {
-
-                } else {
-                    dialogthree = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                    dialogthree.setTitle("Manager all files");
-                    dialogthree.setMessage("Limbo need this permission to access your files more easily and avoid file inaccessible errors.If you do not allow this permission, some errors may occur.");
-                    dialogthree.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                            Uri uri = Uri.fromParts("package", getPackageName(), null);
-                            intent.setData(uri);
-                            startActivity(intent);
-                        }
-                    });
-                    dialogthree.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    dialogthree.setNeutralButton("Don't show again", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            anbuidata.edit().putString("managerallfile", "1").commit();
-                        }
-                    });
-                    dialogthree.create().show();
-                }
-            }
-        } else if (Build.VERSION.SDK_INT > 22) {
-            if (anbuidata.getString("managerallfile", "").length() == 0) {
-                if (ContextCompat.checkSelfPermission(LimboActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        dialogthree = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                        dialogthree.setTitle("Files");
-                        dialogthree.setMessage("Limbo need this permission to access your files more easily and avoid file inaccessible errors.If you do not allow this permission, some errors may occur.");
-                        dialogthree.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
-                                checkper();
-                            }
-                        });
-                        dialogthree.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        dialogthree.setNeutralButton("Don't show again", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                anbuidata.edit().putString("managerallfile", "1").commit();
-                            }
-                        });
-                        dialogthree.create().show();
-                    } else {
-                        ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
-                        checkper();
-                    }
-                }
-            }
-        }
-
-        if (Build.VERSION.SDK_INT > 32) {
-            if (anbuidata.getString("notification", "").length() == 0) {
-                if (ContextCompat.checkSelfPermission(LimboActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                    if (shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
-                        dialogtwo = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                        dialogtwo.setTitle("Notification");
-                        dialogtwo.setMessage("Limbo need this permission to post notifications about virtual machine status. You may not need to allow this permission.");
-                        dialogtwo.setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1000);
-                            }
-                        });
-                        dialogtwo.setNegativeButton("Still not allowed", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                anbuidata.edit().putString("notification", "1").commit();
-                            }
-                        });
-                        dialogtwo.create().show();
-                    } else {
-                        ActivityCompat.requestPermissions(LimboActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1000);
-                    }
-                }
-            }
-        }
-
+        UIUtils.dynamicSetLightStatusBar(this);
     }
 
     private void setupLinks() {
@@ -2531,30 +2425,28 @@ public class LimboActivity extends AppCompatActivity {
     public void setupToolbar() {
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
-
-        // Get the ActionBar here to configure the way it behaves.
-        final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.limbo); // set a custom icon for the
-        // default home button
-        ab.setDisplayShowHomeEnabled(true); // show or hide the default home
-        // button
-        ab.setDisplayHomeAsUpEnabled(true);
-        ab.setDisplayShowCustomEnabled(true); // enable overriding the default
-        // toolbar layout
-        ab.setDisplayShowTitleEnabled(true); // disable the default title
-        // element here (for centered
-        // title)
-
-        ab.setTitle(R.string.app_name);
-    }
-
-    public void Rround() {
-
-        _rround20(linear1);
-
+//        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(tb);
+//
+//        // Get the ActionBar here to configure the way it behaves.
+//        final ActionBar ab = getSupportActionBar();
+//        ab.setHomeAsUpIndicator(R.drawable.limbo); // set a custom icon for the
+//        // default home button
+//        ab.setDisplayShowHomeEnabled(true); // show or hide the default home
+//        // button
+//        ab.setDisplayHomeAsUpEnabled(true);
+//        ab.setDisplayShowCustomEnabled(true); // enable overriding the default
+//        // toolbar layout
+//        ab.setDisplayShowTitleEnabled(true); // disable the default title
+//        // element here (for centered
+//        // title)
+//
+//        ab.setTitle(R.string.app_name);
     }
 
     public void Rrestore() {
+        anbuidata = getSharedPreferences("settingsdata", Context.MODE_PRIVATE);
+
         mballon.setChecked(anbuidata.getString("ballon", "").length() == 1);
 
         checkboxbootmenu.setChecked(anbuidata.getString("bootmenu", "").length() == 1);
@@ -2577,11 +2469,6 @@ public class LimboActivity extends AppCompatActivity {
         } else {
             anbuidata.edit().putString("ballon", "").commit();
         }
-    }
-
-    public void hideToolbar() {
-        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
-        tb.setVisibility(View.GONE);
     }
 
     public void _rroundup(final View _view) {
@@ -2638,7 +2525,7 @@ public class LimboActivity extends AppCompatActivity {
             @Override
             public void onClick(View _view) {
                 anbuidata.edit().putString("managerallfile", "").commit();
-                grantpermissionnow();
+                checkPermissions();
             }
         });
 
@@ -2649,13 +2536,11 @@ public class LimboActivity extends AppCompatActivity {
                     hideaan = false;
                     linear2.setVisibility(View.VISIBLE);
                     imageview1.setImageResource(R.drawable.keyboard_arrow_up_24px);
-                    _rroundup(linear1);
                 }
                 else {
                     hideaan = true;
                     linear2.setVisibility(View.GONE);
                     imageview1.setImageResource(R.drawable.keyboard_arrow_down_24px);
-                    _rround20(linear1);
                 }
             }
         });
@@ -2847,10 +2732,7 @@ public class LimboActivity extends AppCompatActivity {
         linear2.setVisibility(View.GONE);
 
         //linearballon.setVisibility(View.INVISIBLE);
-        _rrounddown(linear2);
-        grantpermissionnow();
-        hideToolbar();
-        Rround();
+        setupToolbar();
         Rrestore();
 
         File directoryToStore;
@@ -2870,8 +2752,6 @@ public class LimboActivity extends AppCompatActivity {
         if (anbuidata.getString("march", "").length() == 0) {
             anbuidata.edit().putString("march", String.valueOf((long)(posmArch))).commit();
         }
-
-        checkper();
     }
     private void copyAssets() {
         AssetManager assetManager = getAssets();
@@ -2911,70 +2791,34 @@ public class LimboActivity extends AppCompatActivity {
         }
     }
 
-    private void checkper() {
-        if (Build.VERSION.SDK_INT > 29) {
-            if (Environment.isExternalStorageManager()) {
-                allowaccesstostorage = true;
-                linear119.setVisibility(View.GONE);
-            } else {
-                allowaccesstostorage = false;
-            }
-        } else if (Build.VERSION.SDK_INT > 22) {
-            if (ContextCompat.checkSelfPermission(LimboActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                allowaccesstostorage = true;
-                linear119.setVisibility(View.GONE);
-            } else {
-                allowaccesstostorage = false;
-            }
+    private void checkPermissions() {
+        boolean _showDialog = true;
+        notificationPermissionStatus = PermisionUtils.notificationPermission(true, this);
+        if (!SharedPreferencesUtils.getisSetupWizardDone(this)) {
+            _showDialog = false;
         }
+        if (PermisionUtils.storagePermission(_showDialog, LimboActivity.this)) {
+            storagePermissionStatus = true;
+            linear119.setVisibility(View.GONE);
 
-        if (allowaccesstostorage) {
             File file = new File("/storage/emulated/0/limbo/bios.bin");
-            if(file.exists()) {
-
-            } else {
+            if (!file.exists()) {
                 install(true);
             }
+        } else {
+            storagePermissionStatus = false;
+            linear119.setVisibility(View.VISIBLE);
         }
     }
 
-    private void beforestart() {
-        if (Double.parseDouble(Build.VERSION.SDK) > 22) {
-            if (allowaccesstostorage) {
-                File file = new File("/storage/emulated/0/limbo/bios.bin");
-                if (file.exists()) {
-                    canstartnow = true;
-                } else {
-                    canstartnow = false;
-                }
-            } else {
-                canstartnow = false;
-            }
-        } else {
-            File file = new File("/storage/emulated/0/limbo/bios.bin");
-            if(file.exists()) {
-                canstartnow = true;
-            } else {
-                canstartnow = false;
-            }
-        }
+    private boolean beforestart() {
+        File file = new File("/storage/emulated/0/limbo/bios.bin");
+        boolean _isready = file.exists();
 
-        if (!canstartnow) {
-            dialogone = new AlertDialog.Builder(this, AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-            dialogone.setTitle("Problem detected");
-            if (allowaccesstostorage) {
-                dialogone.setMessage("The required files are not installed yet, tap the install icon above and next to the menu icon to start the installation.");
-            } else {
-                dialogone.setMessage("Access to storage has not been granted, tap the warning above and allow.");
-            }
-            dialogone.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            dialogone.create().show();
+        if (!_isready) {
+            UIUtils.oneDialog("Problem detected", "The required files are not installed, make sure that access to the archive is granted and try clicking the install button above to start the installation.", true, R.drawable.error_24px, true, false, LimboActivity.this);
         }
+        return _isready;
     }
 
     public void checkUpdate() {
@@ -3068,7 +2912,10 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void onFirstLaunch() {
-        onLicense();
+        if (!SharedPreferencesUtils.getisSetupWizardDone(this)) {
+            startActivity(new Intent(this, SetupWizardActivity.class));
+        }
+        //onLicense();
     }
 
     private void createMachine(String machineValue) {
@@ -3134,12 +2981,12 @@ public class LimboActivity extends AppCompatActivity {
 
     protected void showDownloadLinks() {
 
-        if (!Config.osImages.isEmpty()) {
-            OSDialogBox oses = new OSDialogBox(activity);
-            oses.setCanceledOnTouchOutside(false);
-            oses.setCancelable(false);
-            oses.show();
-        }
+//        if (!Config.osImages.isEmpty()) {
+//            OSDialogBox oses = new OSDialogBox(activity);
+//            oses.setCanceledOnTouchOutside(false);
+//            oses.setCancelable(false);
+//            oses.show();
+//        }
     }
 
     private void onDeleteMachine() {
@@ -3185,46 +3032,65 @@ public class LimboActivity extends AppCompatActivity {
 
     private void onImportMachines() {
 
-        final AlertDialog alertDialog;
-        alertDialog = new AlertDialog.Builder(activity).create();
-        alertDialog.setTitle("Import Machines");
-
-        LinearLayout mLayout = new LinearLayout(this);
-        mLayout.setOrientation(LinearLayout.VERTICAL);
-        mLayout.setPadding(20, 20, 20, 20);
-
-        TextView imageNameView = new TextView(activity);
-        imageNameView.setVisibility(View.VISIBLE);
-        imageNameView.setText(
-                "Choose the <export>.csv file you want to import.\n"
-                        + "WARNING: Any machine with the same name will be replaced!\n"
-                        );
-
-        LinearLayout.LayoutParams searchViewParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mLayout.addView(imageNameView, searchViewParams);
-        alertDialog.setView(mLayout);
-
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+        dialog.setTitle("Import machines");
+        dialog.setMessage("Choose the <export>.csv file you want to import.\n"
+                + "WARNING: Any machine with the same name will be replaced!\n");
+        dialog.setIcon(R.drawable.exit_to_app_24px);
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
                 promptForImportDir();
             }
         });
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                return;
             }
         });
-        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
+        dialog.show();
 
-                return;
-
-            }
-        });
-        alertDialog.show();
+//        final AlertDialog alertDialog;
+//        alertDialog = new AlertDialog.Builder(activity).create();
+//        alertDialog.setTitle("Import Machines");
+//
+//        LinearLayout mLayout = new LinearLayout(this);
+//        mLayout.setOrientation(LinearLayout.VERTICAL);
+//        mLayout.setPadding(20, 20, 20, 20);
+//
+//        TextView imageNameView = new TextView(activity);
+//        imageNameView.setVisibility(View.VISIBLE);
+//        imageNameView.setText(
+//                "Choose the <export>.csv file you want to import.\n"
+//                        + "WARNING: Any machine with the same name will be replaced!\n"
+//                        );
+//
+//        LinearLayout.LayoutParams searchViewParams = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        mLayout.addView(imageNameView, searchViewParams);
+//        alertDialog.setView(mLayout);
+//
+//        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                promptForImportDir();
+//            }
+//        });
+//        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//                return;
+//            }
+//        });
+//        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//            @Override
+//            public void onCancel(DialogInterface dialog) {
+//
+//                return;
+//
+//            }
+//        });
+//        alertDialog.show();
 
     }
 
@@ -3260,9 +3126,9 @@ public class LimboActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    UIAlertLicense(Config.APP_NAME + " v" + finalPInfo.versionName,
+                    UIUtils.oneDialog(Config.APP_NAME + " v" + finalPInfo.versionName,
                             FileUtils.LoadFile(activity, "LICENSE", false),
-                            activity);
+                            true, R.drawable.notes_24px, false, false, activity);
                 } catch (IOException e) {
 
                     e.printStackTrace();
@@ -3370,12 +3236,7 @@ public class LimboActivity extends AppCompatActivity {
     // Main event function
     // Retrives values from saved preferences
     private void onStartButton() {
-        activity.runOnUiThread(new Runnable() {
-            public void run() {
-                beforestart();
-            }
-        });
-        if (!canstartnow) {
+        if (!beforestart()) {
             return;
         }
 
@@ -3746,7 +3607,7 @@ public class LimboActivity extends AppCompatActivity {
 
     private void disableFeatures() {
 
-        LinearLayout mAudioSectionLayout = (LinearLayout) findViewById(R.id.audiosectionl);
+        CardView mAudioSectionLayout = findViewById(R.id.audiosectionl);
         if(!Config.enable_SDL_sound) {
             mAudioSectionLayout.setVisibility(View.GONE);
         }
@@ -4509,29 +4370,38 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void promptMachineName(final Activity activity) {
-        final AlertDialog alertDialog;
-        alertDialog = new AlertDialog.Builder(activity).create();
-        alertDialog.setTitle("New Machine Name");
+        MaterialAlertDialogBuilder alertDialog = new MaterialAlertDialogBuilder(this);
+        alertDialog.setTitle("Create");
+
+        TextInputLayout textInputLayout = new TextInputLayout(this);
+        textInputLayout.setHint("Machine Name");
+        textInputLayout.setPadding(40,40,40,40);
+        textInputLayout.setBoxBackgroundMode(TextInputLayout.BOX_BACKGROUND_OUTLINE);
+
         final EditText vmNameTextView = new EditText(activity);
-        vmNameTextView.setPadding(20, 20, 20, 20);
+        //vmNameTextView.setPadding(20, 20, 20, 20);
         vmNameTextView.setEnabled(true);
         vmNameTextView.setVisibility(View.VISIBLE);
         vmNameTextView.setSingleLine();
-        alertDialog.setView(vmNameTextView);
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Create", (DialogInterface.OnClickListener) null);
 
-        alertDialog.show();
+        textInputLayout.addView(vmNameTextView);
 
-        Button button = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        alertDialog.setView(textInputLayout);
+        alertDialog.setIcon(R.drawable.add_24px);
+        alertDialog.setPositiveButton("Create", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 if (vmNameTextView.getText().toString().trim().equals(""))
                     UIUtils.toastShort(activity, "Machine name cannot be empty");
                 else {
                     createMachine(vmNameTextView.getText().toString());
-                    alertDialog.dismiss();
                 }
+            }
+        });
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
             }
         });
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -4541,6 +4411,10 @@ public class LimboActivity extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(vmNameTextView.getWindowToken(), 0);
             }
         });
+
+        alertDialog.show();
+
+
     }
 
     public void promptImageName(final Activity activity, final FileType fileType) {
@@ -4649,40 +4523,33 @@ public class LimboActivity extends AppCompatActivity {
 
     public void promptExportName(final Activity activity) {
 
-        final AlertDialog alertDialog;
-        alertDialog = new AlertDialog.Builder(activity).create();
-        alertDialog.setTitle("Export Filename");
+        MaterialAlertDialogBuilder alertDialog = new MaterialAlertDialogBuilder(this);
+        alertDialog.setTitle("Export");
 
-        LinearLayout mLayout = new LinearLayout(this);
-        mLayout.setPadding(20, 20, 20, 20);
-        mLayout.setOrientation(LinearLayout.VERTICAL);
+        TextInputLayout textInputLayout = new TextInputLayout(this);
+        textInputLayout.setHint("File name");
+        textInputLayout.setPadding(40,40,40,40);
+        textInputLayout.setBoxBackgroundMode(TextInputLayout.BOX_BACKGROUND_OUTLINE);
 
-        final EditText exportNameView = new EditText(activity);
-        exportNameView.setEnabled(true);
-        exportNameView.setVisibility(View.VISIBLE);
-        exportNameView.setSingleLine();
-        LinearLayout.LayoutParams imageNameViewParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        mLayout.addView(exportNameView, imageNameViewParams);
+        final EditText vmNameTextView = new EditText(activity);
+        //vmNameTextView.setPadding(20, 20, 20, 20);
+        vmNameTextView.setEnabled(true);
+        vmNameTextView.setVisibility(View.VISIBLE);
+        vmNameTextView.setSingleLine();
 
-        alertDialog.setView(mLayout);
+        textInputLayout.addView(vmNameTextView);
 
-        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Export", (DialogInterface.OnClickListener) null);
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Change Directory", (DialogInterface.OnClickListener) null);
-
-        alertDialog.show();
-
-        Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-        positiveButton.setOnClickListener(new View.OnClickListener() {
-
+        alertDialog.setView(textInputLayout);
+        alertDialog.setIcon(R.drawable.output_24px);
+        alertDialog.setPositiveButton("Export", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(DialogInterface dialog, int which) {
                 if (LimboSettingsManager.getExportDir(LimboActivity.this) == null) {
                     changeExportDir();
                     return;
                 }
 
-                String exportFilename = exportNameView.getText().toString();
+                String exportFilename = vmNameTextView.getText().toString();
                 if (exportFilename.trim().equals(""))
                     UIUtils.toastShort(activity, "Export filename cannot be empty");
                 else {
@@ -4691,20 +4558,75 @@ public class LimboActivity extends AppCompatActivity {
                         exportFilename += ".csv";
 
                     exportMachines(exportFilename);
-                    alertDialog.dismiss();
                 }
             }
         });
-
-        Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        negativeButton.setOnClickListener(new View.OnClickListener() {
-
+        alertDialog.setNegativeButton("Change Directory", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(DialogInterface dialog, int which) {
                 changeExportDir();
-
             }
         });
+
+        alertDialog.show();
+
+
+//        final AlertDialog alertDialog;
+//        alertDialog = new AlertDialog.Builder(activity).create();
+//        alertDialog.setTitle("Export Filename");
+//
+//        LinearLayout mLayout = new LinearLayout(this);
+//        mLayout.setPadding(20, 20, 20, 20);
+//        mLayout.setOrientation(LinearLayout.VERTICAL);
+//
+//        final EditText exportNameView = new EditText(activity);
+//        exportNameView.setEnabled(true);
+//        exportNameView.setVisibility(View.VISIBLE);
+//        exportNameView.setSingleLine();
+//        LinearLayout.LayoutParams imageNameViewParams = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//        mLayout.addView(exportNameView, imageNameViewParams);
+//
+//        alertDialog.setView(mLayout);
+//
+//        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Export", (DialogInterface.OnClickListener) null);
+//        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Change Directory", (DialogInterface.OnClickListener) null);
+//
+//        alertDialog.show();
+
+//        Button positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+//        positiveButton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                if (LimboSettingsManager.getExportDir(LimboActivity.this) == null) {
+//                    changeExportDir();
+//                    return;
+//                }
+//
+//                String exportFilename = exportNameView.getText().toString();
+//                if (exportFilename.trim().equals(""))
+//                    UIUtils.toastShort(activity, "Export filename cannot be empty");
+//                else {
+//
+//                    if(!exportFilename.endsWith(".csv"))
+//                        exportFilename += ".csv";
+//
+//                    exportMachines(exportFilename);
+//                    alertDialog.dismiss();
+//                }
+//            }
+//        });
+//
+//        Button negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+//        negativeButton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                changeExportDir();
+//
+//            }
+//        });
 
     }
 
@@ -6818,36 +6740,78 @@ public class LimboActivity extends AppCompatActivity {
             UIUtils.toastShort(this, "No Machine selected");
             return;
         }
-        new AlertDialog.Builder(this).setTitle("Delete VM: " + currMachine.machinename)
-                .setMessage("Delete VM? Only machine definition and state will be deleted, disk images files will not be deleted")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        onDeleteMachine();
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+        dialog.setTitle(currMachine.machinename);
+        dialog.setMessage("Delete VM? Only machine definition and state will be deleted, disk images files will not be deleted");
+        dialog.setIcon(R.drawable.delete_24px);
+        dialog.setPositiveButton("Delete now", new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
+                onDeleteMachine();
             }
-        }).show();
+        });
+        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.show();
+
+//        new AlertDialog.Builder(this).setTitle("Delete VM: " + currMachine.machinename)
+//                .setMessage("Delete VM? Only machine definition and state will be deleted, disk images files will not be deleted")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        onDeleteMachine();
+//                    }
+//                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//            }
+//        }).show();
     }
 
 
     public void promptDiscardVMState() {
-        new AlertDialog.Builder(this).setTitle("Discard VM State")
-                .setMessage("The VM is Paused. If you discard the state you might lose data. Continue?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        currMachine.paused = 0;
-                        MachineOpenHelper.getInstance(activity).update(currMachine,
-                                MachineOpenHelper.PAUSED, 0 + "");
-                        changeStatus(VMStatus.Ready);
-                        enableNonRemovableDeviceOptions(true);
-                        enableRemovableDeviceOptions(true);
-
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+        dialog.setTitle("Discard VM State");
+        dialog.setMessage("The VM is Paused. If you discard the state you might lose data. Continue?");
+        dialog.setIcon(R.drawable.power_settings_new_24px);
+        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
             public void onClick(DialogInterface dialog, int which) {
+                currMachine.paused = 0;
+                MachineOpenHelper.getInstance(activity).update(currMachine,
+                        MachineOpenHelper.PAUSED, 0 + "");
+                changeStatus(VMStatus.Ready);
+                enableNonRemovableDeviceOptions(true);
+                enableRemovableDeviceOptions(true);
             }
-        }).show();
+        });
+        dialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        dialog.show();
+
+//        new AlertDialog.Builder(this).setTitle("Discard VM State")
+//                .setMessage("The VM is Paused. If you discard the state you might lose data. Continue?")
+//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        currMachine.paused = 0;
+//                        MachineOpenHelper.getInstance(activity).update(currMachine,
+//                                MachineOpenHelper.PAUSED, 0 + "");
+//                        changeStatus(VMStatus.Ready);
+//                        enableNonRemovableDeviceOptions(true);
+//                        enableRemovableDeviceOptions(true);
+//
+//                    }
+//                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//            }
+//        }).show();
     }
 
     public void stopVM(boolean exit) {
@@ -6898,7 +6862,7 @@ public class LimboActivity extends AppCompatActivity {
         super.onResume();
         updateValues();
         execTimer();
-        checkper();
+        checkPermissions();
     }
 
     private void updateValues() {

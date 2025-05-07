@@ -56,6 +56,7 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.utils.DrivesDialogBox;
@@ -108,12 +109,14 @@ public class LimboVNCActivity extends VncCanvasActivity {
 
 //        setUIModeMobile();
 
-        Window w = this.getWindow();
-        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        w.setNavigationBarColor(Color.parseColor("#000000"));
+//        Window w = this.getWindow();
+//        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        w.setNavigationBarColor(Color.parseColor("#000000"));
 
-
+        Toolbar tb = findViewById(R.id.toolbar);
+        setSupportActionBar(tb);
+        UIUtils.dynamicSetLightStatusBar(this);
 	}
 
 	private void setDefaulViewMode() {
@@ -252,8 +255,12 @@ public class LimboVNCActivity extends VncCanvasActivity {
 	}
 
 	public void onResume() {
-	    if(LimboActivity.currMachine!=null)
-		    LimboService.updateServiceNotification(LimboActivity.currMachine.machinename + ": VM Running");
+        try {
+            if (LimboActivity.currMachine != null)
+                LimboService.updateServiceNotification(LimboActivity.currMachine.machinename + ": VM Running");
+        } catch (Exception ignored) {
+
+        }
 		super.onResume();
 	}
 
@@ -732,11 +739,11 @@ public class LimboVNCActivity extends VncCanvasActivity {
 
 		if (this.monitorMode) {
 			menu.findItem(R.id.itemMonitor).setTitle("VM Display");
-            menu.findItem(R.id.itemMonitor).setIcon(R.drawable.ui);
+            menu.findItem(R.id.itemMonitor).setIcon(R.drawable.tv_24px);
 
 		} else {
 			menu.findItem(R.id.itemMonitor).setTitle("QEMU Monitor");
-            menu.findItem(R.id.itemMonitor).setIcon(R.drawable.terminal);
+            menu.findItem(R.id.itemMonitor).setIcon(R.drawable.terminal_24px);
 
 		}
 
@@ -771,7 +778,7 @@ public class LimboVNCActivity extends VncCanvasActivity {
 		// menu.findItem(R.id.itemCenterMouse).setIcon(R.drawable.pan);
 		// } else {
 		menu.findItem(R.id.itemCenterMouse).setTitle("Mouse");
-		menu.findItem(R.id.itemCenterMouse).setIcon(R.drawable.mouse);
+		menu.findItem(R.id.itemCenterMouse).setIcon(R.drawable.mouse_24px);
 		//
 		// }
 

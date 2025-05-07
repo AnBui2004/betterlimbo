@@ -28,6 +28,8 @@
 -dontwarn org.slf4j.impl.StaticLoggerBinder
 -dontwarn android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener
 -dontwarn android.media.LoudnessCodecController
+-keep class com.max2idea.android.limbo.main.** { *; }
+-keep class com.limbo.emu.main.** { *; }
 #-keepclassmembers class com.google.firebase.database.GenericTypeIndicator{*;}
 #-keep class * extends com.google.firebase.database.GenericTypeIndicator{*;}
 #-keep class com.google.firebase.database.GenericTypeIndicator{*;}

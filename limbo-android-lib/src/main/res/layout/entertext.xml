@@ -2,10 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:background="@color/colorPrimary"
 	android:orientation="vertical"
-	android:padding="10dip"
-	android:theme="@style/AppTheme">
+	android:padding="10dip">
 
 	<EditText
 		android:id="@+id/textEnterText"
@@ -37,14 +35,14 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:gravity="right|center_vertical"
-				android:src="@android:drawable/arrow_up_float" />
+				android:src="@drawable/keyboard_arrow_up_24px" />
 
 			<ImageButton
 				android:id="@+id/buttonNextEntry"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:gravity="right|center_vertical"
-				android:src="@android:drawable/arrow_down_float" />
+				android:src="@drawable/keyboard_arrow_down_24px" />
 		</LinearLayout>
 	</LinearLayout>
 
@@ -74,7 +72,7 @@
 				android:id="@+id/buttonTextDelete"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:src="@android:drawable/ic_menu_delete" />
+				android:src="@drawable/delete_24px" />
 		</LinearLayout>
 	</LinearLayout>
 

@@ -66,11 +66,7 @@ public class LinksManager extends AppCompatActivity {
         setContentView(R.layout.links_list);
         setupListeners();
         fill();
-        Window w = this.getWindow();
-        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        w.setStatusBarColor(0xff000000);
-        w.setNavigationBarColor(getResources().getColor(R.color.colorPrimary));
+        UIUtils.dynamicSetLightStatusBar(this);
     }
 
     private void setupListeners() {

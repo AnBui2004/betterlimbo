@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Vibrator;
+
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 
 import android.util.Log;
@@ -932,10 +934,14 @@ public class LimboSDLActivity extends SDLActivity {
 
         UIUtils.setOrientation(this);
 
-		Window w = this.getWindow();
-		w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-		w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		w.setNavigationBarColor(Color.parseColor("#000000"));
+//		Window w = this.getWindow();
+//		w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//		w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//		w.setNavigationBarColor(Color.parseColor("#000000"));
+
+		Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(tb);
+		UIUtils.dynamicSetLightStatusBar(this);
 	}
 
     private void createUI(int w, int h) {

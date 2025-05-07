@@ -2,10 +2,9 @@
     android:id="@+id/dialog"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
     android:orientation="vertical"
     android:padding="8dp"
-    android:theme="@style/Theme.AppCompat">
+    android:theme="@style/AppTheme">
 
     <ScrollView
         android:layout_width="wrap_content"

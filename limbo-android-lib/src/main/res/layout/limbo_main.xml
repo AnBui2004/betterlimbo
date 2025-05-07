@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="4dp"
     android:keepScreenOn="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:id="@+id/linear119"
@@ -34,7 +35,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary" />
+        android:background="?attr/colorSurface"
+        android:fitsSystemWindows="true" />
 
     <LinearLayout
         android:id="@+id/scroll_layout"
@@ -74,7 +76,6 @@
                         android:src="@drawable/snapshot" />
 
                     <TextView
-                        android:textColor="@android:color/white"
                         android:id="@+id/snapshotStr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -147,7 +148,6 @@
                 android:padding="8sp"/>
 
             <TextView
-                android:textColor="@android:color/white"
                 android:id="@+id/machineStr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,47 +162,50 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="right"
                 android:singleLine="true"
-                android:text="" />
+                android:text=""/>
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/controlm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:orientation="horizontal"
-            android:background="@drawable/home_card_style">
+            android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/startvm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:focusable="true"
-                android:src="@drawable/play_arrow_24px"
-                android:padding="8sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/startvm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:focusable="true"
+                    android:src="@drawable/play_arrow_24px"
+                    android:padding="8sp"/>
 
-            <ImageButton
-                android:id="@+id/restartvm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:focusable="true"
-                android:src="@drawable/refresh_24px"
-                android:padding="8sp"/>
+                <ImageButton
+                    android:id="@+id/restartvm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:focusable="true"
+                    android:src="@drawable/refresh_24px"
+                    android:padding="8sp"/>
 
-            <ImageButton
-                android:id="@+id/stopvm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:focusable="true"
-                android:src="@drawable/stop_24px"
-                android:padding="8sp"
-                android:tint="@color/colorRed"/>
-
-        </LinearLayout>
+                <ImageButton
+                    android:id="@+id/stopvm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:focusable="true"
+                    android:src="@drawable/stop_24px"
+                    android:padding="8sp"
+                    android:tint="@color/colorRed"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </LinearLayout>

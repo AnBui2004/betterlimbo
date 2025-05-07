@@ -339,7 +339,7 @@ public class FileManager extends ListActivity {
                 checkPermissionsAndBrowse();
             }
         },500);
-
+        UIUtils.dynamicSetLightStatusBar(this);
     }
 
     @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/graphicssectionl"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -7,112 +7,113 @@
     android:layout_marginBottom="4dp"
     android:gravity="center|center_vertical"
     android:orientation="vertical"
-    android:animateLayoutChanges="true"
-    android:background="@drawable/home_card_style">
-
+    android:animateLayoutChanges="true" >
 
     <LinearLayout
-        android:id="@+id/graphicsheaderl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:textColor="@android:color/white"
-            android:id="@+id/graphicssectionStr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Graphics"
-            android:textSize="18sp" />
-
-
-        <TextView
-            android:textColor="@android:color/white"
-            android:id="@+id/graphicssectionsummaryStr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:maxLines="3"
-            android:minLines="2"
-            android:padding="10dp"
-            android:text="" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/graphicssectionDetails"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="10dp">
-
+        android:animateLayoutChanges="true">
         <LinearLayout
-            android:id="@+id/vgacfgl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/tv_displays_24px"
-                android:padding="8sp" />
-
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/vgacfgStr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Video Display: "
-                android:padding="8sp" />
-
-            <Spinner
-                android:id="@+id/vgacfgval"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="right"
-                android:singleLine="true"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearvirtiogpu"
+            android:id="@+id/graphicsheaderl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingTop="8sp"
-            android:paddingBottom="8sp"
-            android:paddingRight="8sp">
-            <ImageView
-                android:id="@+id/imageviewvirtiogpu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/gradient_24px"
-                android:scaleType="center"
-                android:padding="8sp"/>
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
             <TextView
-                android:id="@+id/textviewvirtiogpu"
+                android:id="@+id/graphicssectionStr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="VirtIO GPU"
-                android:textColor="#FFFFFF"
-                android:layout_weight="1" />
-            <CheckBox
-                android:id="@+id/checkboxvirtiogpu"
-                android:layout_width="wrap_content"
+                android:text="Graphics"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/graphicssectionsummaryStr"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000000" />
+                android:gravity="right"
+                android:maxLines="3"
+                android:minLines="2"
+                android:padding="10dp"
+                android:text="" />
+
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/graphicssectionDetails"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/vgacfgl"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/tv_displays_24px"
+                    android:padding="8sp" />
+
+                <TextView
+                    android:id="@+id/vgacfgStr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Video Display: "
+                    android:padding="8sp" />
+
+                <Spinner
+                    android:id="@+id/vgacfgval"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearvirtiogpu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingTop="8sp"
+                android:paddingBottom="8sp"
+                android:paddingRight="8sp">
+                <ImageView
+                    android:id="@+id/imageviewvirtiogpu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gradient_24px"
+                    android:scaleType="center"
+                    android:padding="8sp"/>
+                <TextView
+                    android:id="@+id/textviewvirtiogpu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="VirtIO GPU"
+                    android:layout_weight="1" />
+                <CheckBox
+                    android:id="@+id/checkboxvirtiogpu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
