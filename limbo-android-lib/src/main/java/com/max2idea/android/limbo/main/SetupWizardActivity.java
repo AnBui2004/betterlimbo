@@ -159,6 +159,7 @@ public class SetupWizardActivity extends AppCompatActivity {
             stepstoragepermission.setVisibility(GONE);
         } else {
             SharedPreferencesUtils.setisSetupWizardDone(this);
+            finishNow();
             finish();
         }
     }
@@ -177,5 +178,9 @@ public class SetupWizardActivity extends AppCompatActivity {
                 nextbutton.setVisibility(GONE);
             }
         }
+    }
+
+    protected void finishNow() {
+
     }
 }

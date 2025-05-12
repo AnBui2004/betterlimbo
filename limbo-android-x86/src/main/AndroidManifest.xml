@@ -32,16 +32,29 @@
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true"
         >
+
         <activity
-            android:name=".LimboEmuActivity"
+            android:name=".Splash2Activity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
             android:label="Limbo x86"
-            android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SetupWizard2Activity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="Limbo x86"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".LimboEmuActivity"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:label="Limbo x86"
+            android:launchMode="singleTask"
+            android:exported="false">
         </activity>
         <activity
             android:name="com.max2idea.android.limbo.main.LimboFileManager"

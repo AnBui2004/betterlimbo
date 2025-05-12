@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@android:color/system_accent1_200</color>
+    <color name="colorOnPrimary">@android:color/system_accent1_800</color>
+    <color name="colorSecondary">@android:color/system_accent1_200</color>
+    <color name="colorOnSecondary">@android:color/system_accent1_800</color>
+    <color name="colorSurface">@android:color/system_accent1_900</color>
+    <color name="colorOnSurface">@android:color/system_accent1_100</color>
+    <color name="colorBackground">@android:color/system_accent1_900</color>
+    <color name="colorOnBackground">@android:color/system_accent1_100</color>
+<!--    <color name="colorPrimaryDark">#151E25</color>-->
+<!--    <color name="colorAccent">#2196F3</color>-->
+<!--    <color name="colorControlHighlight">#FFF</color>-->
+<!--    <color name="colorControlNormal">#FFF</color>-->
+    <color name="colorHomeCard">#000</color>
+    <color name="colorRed">#FF4436</color>
+</resources>

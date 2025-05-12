@@ -89,6 +89,8 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.color.DynamicColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -2722,12 +2724,12 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     private void initializeLogic() {
-        Window w = this.getWindow();
-        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            w.setNavigationBarColor(getColor(R.color.colorPrimary));
-        }
+//        Window w = this.getWindow();
+//        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            w.setNavigationBarColor(getColor(R.color.colorPrimary));
+//        }
         hideaan = true;
         linear2.setVisibility(View.GONE);
 
@@ -2912,9 +2914,9 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void onFirstLaunch() {
-        if (!SharedPreferencesUtils.getisSetupWizardDone(this)) {
-            startActivity(new Intent(this, SetupWizardActivity.class));
-        }
+//        if (!SharedPreferencesUtils.getisSetupWizardDone(this)) {
+//            startActivity(new Intent(this, SetupWizardActivity.class));
+//        }
         //onLicense();
     }
 

@@ -18,12 +18,18 @@ public class SplashActivity extends AppCompatActivity {
         UIUtils.dynamicSetLightStatusBar(this);
         new Handler().postDelayed(() -> {
             if (SharedPreferencesUtils.getisSetupWizardDone(this)) {
-//                Intent intent = new Intent(SplashActivity.this, LimboEmuActivity.class);
-//                startActivity(intent);
+                startHome();
             } else {
-                Intent intent = new Intent(SplashActivity.this, SetupWizardActivity.class);
-                startActivity(intent);
+                startSetup();
             }
         }, 1000);
+    }
+
+    protected void startHome() {
+
+    }
+
+    protected void startSetup() {
+
     }
 }
