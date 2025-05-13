@@ -54,7 +54,8 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
             android:label="Limbo x86"
             android:launchMode="singleTask"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/AppThemeHome">
         </activity>
         <activity
             android:name="com.max2idea.android.limbo.main.LimboFileManager"
@@ -82,8 +83,7 @@
         <activity
             android:name="com.max2idea.android.limbo.utils.LinksManager"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
-            android:label="Downloads"
-            android:theme="@style/AppTheme2">
+            android:label="Downloads">
         </activity>
         <service
             android:name="com.max2idea.android.limbo.main.LimboService"

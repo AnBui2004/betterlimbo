@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/create"
+        android:icon="@drawable/add_24px"
+        android:title="@string/create" />
+    <item
+        android:id="@+id/discard_saved_state"
+        android:icon="@drawable/close_24px"
+        android:title="@string/discard_saved_state" />
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/delete_24px"
+        android:title="@string/delete" />
+    <item
+        android:id="@+id/import_now"
+        android:icon="@drawable/exit_to_app_24px"
+        android:title="@string/stringimport"/>
+    <item
+        android:id="@+id/export"
+        android:icon="@drawable/output_24px"
+        android:title="@string/export"/>
+    <item
+        android:id="@+id/view_log"
+        android:icon="@drawable/notes_24px"
+        android:title="@string/view_log"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings_24px"
+        android:title="@string/settings"/>
+    <item
+        android:id="@+id/install_roms"
+        android:icon="@drawable/archive_24px"
+        android:title="@string/install_roms"/>
+    <item
+        android:id="@+id/help"
+        android:icon="@drawable/help_24px"
+        android:title="@string/help"/>
+    <item
+        android:id="@+id/changelog"
+        android:icon="@drawable/edit_note_24px"
+        android:title="@string/changelog" />
+    <item
+        android:id="@+id/license"
+        android:icon="@drawable/copyright_24px"
+        android:title="@string/license"/>
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/power_settings_new_24px"
+        android:title="@string/exit"/>
+
+</menu>

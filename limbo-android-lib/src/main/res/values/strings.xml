@@ -85,6 +85,18 @@
     <string name="save_state">Pause VM</string>
     <string name="save_snapshot">Save Snapshot</string>
     <string name="scaling_zoomable">Zoomable</string>
+    <string name="create">Create</string>
+    <string name="discard_saved_state">Discard saved state</string>
+    <string name="delete">Delete</string>
+    <string name="stringimport">Import</string>
+    <string name="export">Export</string>
+    <string name="settings">Settings</string>
+    <string name="install_roms">Install roms</string>
+    <string name="changelog">Changelog</string>
+    <string name="license">License</string>
+    <string name="exit">Exit</string>
+    <string name="menu">Menu</string>
+    <string name="open">Open</string>
     <!-- Send selected metakey -->
     <string name="send_button">Send</string>
     <string name="send_key_again">Send Key Again</string>

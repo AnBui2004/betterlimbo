@@ -18,6 +18,9 @@
  */
 package com.max2idea.android.limbo.main;
 
+import static android.content.Intent.ACTION_OPEN_DOCUMENT;
+import static android.content.Intent.ACTION_VIEW;
+import static android.os.Build.VERSION.SDK_INT;
 import static com.max2idea.android.limbo.jni.VMExecutor.context;
 
 import android.Manifest;
@@ -27,6 +30,7 @@ import android.androidVNC.VncCanvas;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
+import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -57,11 +61,14 @@ import android.os.PowerManager.WakeLock;
 import android.os.StrictMode;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MenuItemCompat;
+
+import android.provider.DocumentsContract;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -90,9 +97,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.jni.VMExecutor;
@@ -110,10 +119,12 @@ import com.max2idea.android.limbo.utils.SharedPreferencesUtils;
 import com.max2idea.android.limbo.utils.UIUtils;
 import com.max2idea.android.limbo.utils.UIUtils.LimboFileSpinnerAdapter;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -121,13 +132,20 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LimboActivity extends AppCompatActivity {
 
@@ -2149,7 +2167,7 @@ public class LimboActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         activity = this;
         super.onCreate(savedInstanceState);
-
+        UIUtils.edgeToEdge(this);
         setContentView(R.layout.limbo_main);
         setupWidgets();
         initialize(savedInstanceState);
@@ -2167,6 +2185,8 @@ public class LimboActivity extends AppCompatActivity {
         checkAndLoadLibs();
         setupLinks();
         UIUtils.dynamicSetLightStatusBar(this);
+        UIUtils.setOnApplyWindowInsetsListener(findViewById(R.id.nav_view));
+        UIUtils.setOnApplyWindowInsetsListener(findViewById(R.id.main_content_here));
     }
 
     private void setupLinks() {
@@ -2427,6 +2447,48 @@ public class LimboActivity extends AppCompatActivity {
     public void setupToolbar() {
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+        DrawerLayout drawerLayout = findViewById(R.id.main);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, tb,
+                R.string.open, R.string.close);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                //Closing drawer on item click
+                drawerLayout.closeDrawers();
+
+                //Check to see which item was being clicked and perform appropriate action
+                int id = menuItem.getItemId();
+                if (id == R.id.create) {
+                    promptMachineName(activity);
+                }
+                if (id == R.id.discard_saved_state) {
+                    promptDiscardVMState();
+                } else if (id == R.id.delete) {
+                    promptDeleteMachine();
+                } else if (id == R.id.import_now) {
+                    onImportMachines();
+                } else if (id == R.id.export) {
+                    onExportMachines();
+                } else if (id == R.id.view_log) {
+                    onViewLog();
+                } else if (id == R.id.settings) {
+                    goToSettings();
+                } else if (id == R.id.install_roms) {
+                    install(true);
+                } else if (id == R.id.changelog) {
+                    UIUtils.onChangeLog(activity);
+                } else if (id == R.id.license) {
+                    onLicense();
+                } else if (id == R.id.exit) {
+                    exit();
+                }
+                return false;
+            }
+        });
 //        Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(tb);
 //
@@ -6651,20 +6713,20 @@ public class LimboActivity extends AppCompatActivity {
 
     public boolean setupMenu(Menu menu) {
 
-        menu.add(0, HELP, 0, "Help").setIcon(R.drawable.help_24px);
-        menu.add(0, INSTALL, 0, "Install Roms").setIcon(R.drawable.archive_24px);
+//        menu.add(0, HELP, 0, "Help").setIcon(R.drawable.help_24px);
+//        menu.add(0, INSTALL, 0, "Install Roms").setIcon(R.drawable.archive_24px);
         menu.add(0, CREATE, 0, "Create machine").setIcon(R.drawable.add_24px);
-        menu.add(0, DELETE, 0, "Delete Machine").setIcon(R.drawable.delete_24px);
-        menu.add(0, SETTINGS, 0, "Settings").setIcon(R.drawable.settings_24px);
-        if (currMachine != null && currMachine.paused == 1)
-            menu.add(0, DISCARD_VM_STATE, 0, "Discard Saved State").setIcon(R.drawable.close_24px);
-        menu.add(0, EXPORT, 0, "Export Machines").setIcon(R.drawable.output_24px);
-        menu.add(0, IMPORT, 0, "Import Machines").setIcon(R.drawable.exit_to_app_24px);
-        menu.add(0, VIEWLOG, 0, "View Log").setIcon(R.drawable.notes_24px);
-        menu.add(0, HELP, 0, "Help").setIcon(R.drawable.help_24px);
-        menu.add(0, CHANGELOG, 0, "Changelog").setIcon(R.drawable.edit_note_24px);
-        menu.add(0, LICENSE, 0, "License").setIcon(R.drawable.copyright_24px);
-        menu.add(0, QUIT, 0, "Exit").setIcon(R.drawable.power_settings_new_24px);
+//        menu.add(0, DELETE, 0, "Delete Machine").setIcon(R.drawable.delete_24px);
+//        menu.add(0, SETTINGS, 0, "Settings").setIcon(R.drawable.settings_24px);
+//        if (currMachine != null && currMachine.paused == 1)
+//            menu.add(0, DISCARD_VM_STATE, 0, "Discard Saved State").setIcon(R.drawable.close_24px);
+//        menu.add(0, EXPORT, 0, "Export Machines").setIcon(R.drawable.output_24px);
+//        menu.add(0, IMPORT, 0, "Import Machines").setIcon(R.drawable.exit_to_app_24px);
+//        menu.add(0, VIEWLOG, 0, "View Log").setIcon(R.drawable.notes_24px);
+//        menu.add(0, HELP, 0, "Help").setIcon(R.drawable.help_24px);
+//        menu.add(0, CHANGELOG, 0, "Changelog").setIcon(R.drawable.edit_note_24px);
+//        menu.add(0, LICENSE, 0, "License").setIcon(R.drawable.copyright_24px);
+//        menu.add(0, QUIT, 0, "Exit").setIcon(R.drawable.power_settings_new_24px);
 
 
         int maxMenuItemsShown = 3;

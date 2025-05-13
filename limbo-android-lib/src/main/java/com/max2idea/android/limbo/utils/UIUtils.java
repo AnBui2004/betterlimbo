@@ -51,12 +51,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import androidx.activity.ComponentActivity;
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 
 public class UIUtils {
@@ -723,5 +727,41 @@ public class UIUtils {
         } else {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
+    }
+
+    public static void edgeToEdge(ComponentActivity _activity) {
+        EdgeToEdge.enable(_activity);
+    }
+
+    public static void setOnApplyWindowInsetsListener(View _view) {
+        ViewCompat.setOnApplyWindowInsetsListener(_view, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+
+    public static void setOnApplyWindowInsetsListenerLeftRight(View _view) {
+        ViewCompat.setOnApplyWindowInsetsListener(_view, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, v.getPaddingTop(), systemBars.right, v.getPaddingBottom());
+            return insets;
+        });
+    }
+
+    public static void setOnApplyWindowInsetsListenerBottom(View _view) {
+        ViewCompat.setOnApplyWindowInsetsListener(_view, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, v.getPaddingTop(), systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+
+    public static void setOnApplyWindowInsetsListenerForToolbar(View _view) {
+        ViewCompat.setOnApplyWindowInsetsListener(_view, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, v.getPaddingBottom());
+            return insets;
+        });
     }
 }
