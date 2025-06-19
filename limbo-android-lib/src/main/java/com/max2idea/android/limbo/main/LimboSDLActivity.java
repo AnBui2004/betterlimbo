@@ -47,6 +47,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.limbo.emu.lib.R;
+import com.max2idea.android.limbo.utils.DialogUtils;
 import com.max2idea.android.limbo.utils.DrivesDialogBox;
 import com.max2idea.android.limbo.utils.FileUtils;
 import com.max2idea.android.limbo.utils.Machine;
@@ -1048,6 +1049,7 @@ public class LimboSDLActivity extends SDLActivity {
 	}
 
 	protected void onResume() {
+		super.onResume();
 		Log.v("SDL", "onResume()");
 		try {
 			LimboService.updateServiceNotification(LimboActivity.currMachine.machinename + ": VM Running");
@@ -1068,21 +1070,14 @@ public class LimboSDLActivity extends SDLActivity {
 
 	public void promptPause(final Activity activity) {
 
-		final AlertDialog alertDialog;
-		alertDialog = new AlertDialog.Builder(activity).create();
-		alertDialog.setTitle("Pause VM");
-		TextView stateView = new TextView(activity);
-		stateView.setText("This make take a while depending on the RAM size used");
-		stateView.setPadding(20, 20, 20, 20);
-		alertDialog.setView(stateView);
+		DialogUtils.twoDialog(LimboSDLActivity.this, "Pause VM", "Are you sure you want to pause the VM? This make take a while depending on the RAM size used.", "Yes", "No", true, R.drawable.pause_24px, true,
+				() -> {
+					onPauseVM();
+				},
+				() -> {
 
-		alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Pause", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				onPauseVM();
-				return;
-			}
-		});
-		alertDialog.show();
+				}
+		);
 	}
 
 	private void onPauseVM() {

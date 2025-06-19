@@ -30,6 +30,7 @@
 -dontwarn android.media.LoudnessCodecController
 -keep class com.max2idea.android.limbo.main.** { *; }
 -keep class com.limbo.emu.main.** { *; }
+-keep class org.libsdl.app.** { *; }
 #-keepclassmembers class com.google.firebase.database.GenericTypeIndicator{*;}
 #-keep class * extends com.google.firebase.database.GenericTypeIndicator{*;}
 #-keep class com.google.firebase.database.GenericTypeIndicator{*;}

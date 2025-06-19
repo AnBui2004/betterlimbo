@@ -123,44 +123,20 @@ public class Machine {
 
     public static void promptPausedVM(final Activity _context) {
 
-        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
-        dialog.setTitle("Paused");
-        dialog.setMessage("VM is now Paused tap OK to exit");
-        dialog.setIcon(R.drawable.check_24px);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Log.i(TAG, "VM Paused, Shutting Down");
-                if (_context.getParent() != null) {
-                    _context.getParent().finish();
-                } else {
-                    _context.finish();
-                }
+        DialogUtils.oneDialog(_context, "Paused", "VM is now paused tap OK to exit", "OK", true, R.drawable.check_24px, false,
+                () -> {
+                    Log.i(TAG, "VM Paused, Shutting Down");
+                    if (_context.getParent() != null) {
+                        _context.getParent().finish();
+                    } else {
+                        _context.finish();
+                    }
 
-                if (LimboActivity.vmexecutor != null) {
-                    LimboActivity.vmexecutor.stopvm(0);
+                    if (LimboActivity.vmexecutor != null) {
+                        LimboActivity.vmexecutor.stopvm(0);
+                    }
                 }
-            }
-        });
-        dialog.setCancelable(false);
-        dialog.show();
-
-//        new AlertDialog.Builder(activity).setCancelable(false).setTitle("Paused").setMessage("VM is now Paused tap OK to exit")
-//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                        Log.i(TAG, "VM Paused, Shutting Down");
-//                        if (activity.getParent() != null) {
-//                            activity.getParent().finish();
-//                        } else {
-//                            activity.finish();
-//                        }
-//
-//                        if (LimboActivity.vmexecutor != null) {
-//                            LimboActivity.vmexecutor.stopvm(0);
-//                        }
-//                    }
-//                }).show();
+        );
     }
 
 
@@ -188,88 +164,38 @@ public class Machine {
 
         errStr = errStr != null ? errStr : "Could not pause VM. View log for details";
 
-        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
-        dialog.setTitle("Error");
-        dialog.setMessage(errStr);
-        dialog.setIcon(R.drawable.error_24px);
-        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Thread t = new Thread(new Runnable() {
-                    public void run() {
-                        String command = QmpClient.cont();
-                        String msg = QmpClient.sendCommand(command);
-                    }
-                });
-                t.start();
-            }
-        });
-        dialog.show();
-
-//        new AlertDialog.Builder(activity).setTitle("Error").setMessage(errStr)
-//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//
-//                        Thread t = new Thread(new Runnable() {
-//                            public void run() {
-//                                String command = QmpClient.cont();
-//                                String msg = QmpClient.sendCommand(command);
-//                            }
-//                        });
-//                        t.start();
-//                    }
-//                }).show();
+        DialogUtils.oneDialog(_context, "Error", errStr, "OK", true, R.drawable.error_24px, true,
+                () -> {
+                    Thread t = new Thread(new Runnable() {
+                        public void run() {
+                            String command = QmpClient.cont();
+                            String msg = QmpClient.sendCommand(command);
+                        }
+                    });
+                    t.start();
+                }
+        );
     }
 
     public static void stopVM(final Activity _context) {
 
-        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
-        dialog.setTitle("Shutdown");
-        dialog.setMessage("To avoid any corrupt data make sure you have already shutdown the Operating system from within the VM. Continue?");
-        dialog.setIcon(R.drawable.power_settings_new_24px);
-        dialog.setPositiveButton("Shutdown now", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (_context.getParent() != null) {
-                    _context.getParent().finish();
-                } else {
-                    _context.finish();
+        DialogUtils.twoDialog(_context, "Shutdown", "To avoid any corrupt data make sure you have already shutdown the Operating system from within the VM. Continue?", "Shutdown now", "Close", true, R.drawable.power_settings_new_24px, true,
+                () -> {
+                    if (_context.getParent() != null) {
+                        _context.getParent().finish();
+                    } else {
+                        _context.finish();
+                    }
+
+                    if (LimboActivity.vmexecutor != null) {
+                        //LimboActivity.vmexecutor.stopvm(0);
+                        LimboActivity.vmexecutor.doQuit();
+                    }
+                },
+                () -> {
+
                 }
-
-                if (LimboActivity.vmexecutor != null) {
-                    //LimboActivity.vmexecutor.stopvm(0);
-                    LimboActivity.vmexecutor.doQuit();
-                }
-            }
-        });
-        dialog.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        dialog.show();
-
-//        new AlertDialog.Builder(activity).setTitle("Shutdown VM")
-//                .setMessage("To avoid any corrupt data make sure you "
-//                        + "have already shutdown the Operating system from within the VM. Continue?")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        if (activity.getParent() != null) {
-//                            activity.getParent().finish();
-//                        } else {
-//                            activity.finish();
-//                        }
-//
-//                        if (LimboActivity.vmexecutor != null) {
-//                            //LimboActivity.vmexecutor.stopvm(0);
-//                            LimboActivity.vmexecutor.doQuit();
-//                        }
-//                    }
-//                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//            }
-//        }).show();
+        );
     }
 
     public static LimboActivity.VMStatus checkSaveVMStatus(final Activity activity) {
@@ -370,45 +296,19 @@ public class Machine {
 
     public static void resetVM(final Activity _context) {
 
-        MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(_context);
-        dialog.setTitle("Reset");
-        dialog.setMessage("To avoid any corrupt data make sure you have already shutdown the Operating system from within the VM. Continue?");
-        dialog.setIcon(R.drawable.refresh_24px);
-        dialog.setPositiveButton("Reset now", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                new Thread(new Runnable() {
-                    public void run() {
-                        Log.v(TAG, "VM is reset");
-                        Machine.onRestartVM(_context);
-                    }
-                }).start();
-            }
-        });
-        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        DialogUtils.twoDialog(_context, "Reset", "To avoid any corrupt data make sure you have already shutdown the Operating system from within the VM. Continue?", "Reset now", "Cancel", true, R.drawable.refresh_24px, true,
+                () -> {
+                    new Thread(new Runnable() {
+                        public void run() {
+                            Log.v(TAG, "VM is reset");
+                            Machine.onRestartVM(_context);
+                        }
+                    }).start();
+                },
+                () -> {
 
-            }
-        });
-        dialog.show();
-//        new AlertDialog.Builder(activity).setTitle("Reset VM")
-//                .setMessage("To avoid any corrupt data make sure you "
-//                        + "have already shutdown the Operating system from within the VM. Continue?")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        new Thread(new Runnable() {
-//                            public void run() {
-//                                Log.v(TAG, "VM is reset");
-//                                Machine.onRestartVM(activity);
-//                            }
-//                        }).start();
-//
-//                    }
-//                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//            }
-//        }).show();
+                }
+        );
     }
 
     public void insertMachineDB(Context context) {

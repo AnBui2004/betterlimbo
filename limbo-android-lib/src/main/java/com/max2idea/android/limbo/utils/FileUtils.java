@@ -374,7 +374,7 @@ public class FileUtils {
             public void run() {
 
                 if (Config.viewLogInternally) {
-                    UIUtils.copyDialog("Log", contentsFormatted.toString(), activity);
+                    UIUtils.copyDialog("Log", finalContents, activity);
 //                    UIUtils.UIAlertLog(activity, "Limbo Log", contentsFormatted);
                 } else {
                     try {
@@ -392,7 +392,6 @@ public class FileUtils {
 
             }
         });
-
     }
 
     public static boolean fileValid(Context context, String path) {
