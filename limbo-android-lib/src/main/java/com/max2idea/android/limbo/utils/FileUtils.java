@@ -50,6 +50,7 @@ import android.webkit.MimeTypeMap;
 
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.main.Config;
+import com.max2idea.android.limbo.main.LastCrash;
 import com.max2idea.android.limbo.main.LimboActivity;
 
 /**
@@ -359,39 +360,41 @@ public class FileUtils {
 
     public static void viewLimboLog(final Activity activity) {
 
-        String contents = FileUtils.getFileContents(Config.logFilePath);
+//        String contents = FileUtils.getFileContents(Config.logFilePath);
+//
+//        if (contents.length() > 50 * 1024)
+//            contents = contents.substring(0, 25 * 1024)
+//                            + "\n.....\n" +
+//                            contents.substring(contents.length() - 25 * 1024);
+//
+//        final String finalContents = contents;
+//        final Spannable contentsFormatted = UIUtils.formatAndroidLog(contents);
 
-        if (contents.length() > 50 * 1024)
-            contents = contents.substring(0, 25 * 1024)
-                            + "\n.....\n" +
-                            contents.substring(contents.length() - 25 * 1024);
+        activity.startActivity(new Intent(activity, LastCrash.class));
 
-        final String finalContents = contents;
-        final Spannable contentsFormatted = UIUtils.formatAndroidLog(contents);
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                if (Config.viewLogInternally) {
-                    UIUtils.copyDialog("Log", finalContents, activity);
+//        activity.runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                if (Config.viewLogInternally) {
+//                    UIUtils.copyDialog("Log", finalContents, activity);
 //                    UIUtils.UIAlertLog(activity, "Limbo Log", contentsFormatted);
-                } else {
-                    try {
-                        Intent intent = new Intent(Intent.ACTION_EDIT);
-                        File file = new File(Config.logFilePath);
-                        Uri uri = Uri.fromFile(file);
-                        intent.setDataAndType(uri, "text/plain");
-                        activity.startActivity(intent);
-                    } catch (Exception ex) {
+//                } else {
+//                    try {
+//                        Intent intent = new Intent(Intent.ACTION_EDIT);
+//                        File file = new File(Config.logFilePath);
+//                        Uri uri = Uri.fromFile(file);
+//                        intent.setDataAndType(uri, "text/plain");
+//                        activity.startActivity(intent);
+//                    } catch (Exception ex) {
 //            UIUtils.toastShort(activity, "Could not find a Text Viewer on your device");
-                        UIUtils.UIAlertLog(activity, "Limbo Log", contentsFormatted);
-                    }
-                }
-
-
-            }
-        });
+//                        UIUtils.UIAlertLog(activity, "Limbo Log", contentsFormatted);
+//                    }
+//                }
+//
+//
+//            }
+//        });
     }
 
     public static boolean fileValid(Context context, String path) {

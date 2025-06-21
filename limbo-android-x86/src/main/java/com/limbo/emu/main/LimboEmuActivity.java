@@ -49,7 +49,7 @@ public class LimboEmuActivity extends LimboActivity {
 
         //TODO: change location to something that the user will have access outside of limbo
         //  like internal storage
-        Config.logFilePath = Config.cacheDir + "/limbo/limbo-x86-log.txt";
+        Config.logFilePath = Config.getBasefileDir() + "/logs/limbo-x86-log.txt";
     }
 
     protected void loadQEMULib() {

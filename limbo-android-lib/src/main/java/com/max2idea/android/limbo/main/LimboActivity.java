@@ -105,6 +105,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.jni.VMExecutor;
+import com.max2idea.android.limbo.utils.DialogUtils;
 import com.max2idea.android.limbo.utils.FavOpenHelper;
 import com.max2idea.android.limbo.utils.FileInstaller;
 import com.max2idea.android.limbo.utils.FileManager;
@@ -1886,47 +1887,73 @@ public class LimboActivity extends AppCompatActivity {
                     return;
 
                 if (isChecked) {
-                    DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            MachineOpenHelper.getInstance(activity).update(currMachine,
-                                    MachineOpenHelper.ENABLE_KVM, 1 + "");
-                            currMachine.enableKVM = 1;
-                            updateSummary(false);
-                            mEnableMTTCG.setChecked(false);
-                        }
-                    };
+                    DialogUtils.threeDialog(LimboActivity.this, "Enable KVM", "Warning! You'll need an Android Device with the same architecture as the emulated Guest. " +
+                            "Make sure you have installed an Android kernel with KVM support." +
+                            " If you don't know what this is press Cancel now.\n\nIf you experience crashes disable this option. Do you want to continue?", "OK", "Cancel", "KVM help", true, R.drawable.rocket_launch_24px, false,
+                            () -> {
+                                MachineOpenHelper.getInstance(activity).update(currMachine,
+                                        MachineOpenHelper.ENABLE_KVM, 1 + "");
+                                currMachine.enableKVM = 1;
+                                updateSummary(false);
+                                mEnableMTTCG.setChecked(false);
+                            },
+                            () -> {
+                                MachineOpenHelper.getInstance(activity).update(currMachine,
+                                        MachineOpenHelper.ENABLE_KVM, 0 + "");
+                                mEnableKVM.setChecked(false);
+                                currMachine.enableKVM = 0;
+                                updateSummary(false);
+                            },
+                            () -> {
+                                MachineOpenHelper.getInstance(activity).update(currMachine,
+                                        MachineOpenHelper.ENABLE_KVM, 0 + "");
+                                mEnableKVM.setChecked(false);
+                                currMachine.enableKVM = 0;
+                                updateSummary(false);
+                                goToURL(Config.kvmLink);
+                            });
 
-                    DialogInterface.OnClickListener cancelListener =
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    MachineOpenHelper.getInstance(activity).update(currMachine,
-                                            MachineOpenHelper.ENABLE_KVM, 0 + "");
-                                    mEnableKVM.setChecked(false);
-                                    currMachine.enableKVM = 0;
-                                    updateSummary(false);
-                                    return;
-                                }
-                            };
-
-                    DialogInterface.OnClickListener helpListener =
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    MachineOpenHelper.getInstance(activity).update(currMachine,
-                                            MachineOpenHelper.ENABLE_KVM, 0 + "");
-                                    mEnableKVM.setChecked(false);
-                                    currMachine.enableKVM = 0;
-                                    updateSummary(false);
-                                    goToURL(Config.kvmLink);
-                                    return;
-                                }
-                            };
-
-                    UIUtils.UIAlert(activity,
-                            "Enable KVM",
-                            "Warning! You'll need an Android Device with the same architecture as the emulated Guest. " +
-                                    "Make sure you have installed an Android kernel with KVM support." +
-                                    "If you don't know what this is press Cancel now.\n\nIf you experience crashes disable this option. Do you want to continue?",
-                            16, false, "OK", okListener, "Cancel", cancelListener, "KVM Help", helpListener);
+//                    DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            MachineOpenHelper.getInstance(activity).update(currMachine,
+//                                    MachineOpenHelper.ENABLE_KVM, 1 + "");
+//                            currMachine.enableKVM = 1;
+//                            updateSummary(false);
+//                            mEnableMTTCG.setChecked(false);
+//                        }
+//                    };
+//
+//                    DialogInterface.OnClickListener cancelListener =
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    MachineOpenHelper.getInstance(activity).update(currMachine,
+//                                            MachineOpenHelper.ENABLE_KVM, 0 + "");
+//                                    mEnableKVM.setChecked(false);
+//                                    currMachine.enableKVM = 0;
+//                                    updateSummary(false);
+//                                    return;
+//                                }
+//                            };
+//
+//                    DialogInterface.OnClickListener helpListener =
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    MachineOpenHelper.getInstance(activity).update(currMachine,
+//                                            MachineOpenHelper.ENABLE_KVM, 0 + "");
+//                                    mEnableKVM.setChecked(false);
+//                                    currMachine.enableKVM = 0;
+//                                    updateSummary(false);
+//                                    goToURL(Config.kvmLink);
+//                                    return;
+//                                }
+//                            };
+//
+//                    UIUtils.UIAlert(activity,
+//                            "Enable KVM",
+//                            "Warning! You'll need an Android Device with the same architecture as the emulated Guest. " +
+//                                    "Make sure you have installed an Android kernel with KVM support." +
+//                                    "If you don't know what this is press Cancel now.\n\nIf you experience crashes disable this option. Do you want to continue?",
+//                            16, false, "OK", okListener, "Cancel", cancelListener, "KVM Help", helpListener);
 
                 } else {
                     MachineOpenHelper.getInstance(activity).update(currMachine,
@@ -2389,6 +2416,10 @@ public class LimboActivity extends AppCompatActivity {
                 if (!folder.exists())
                     folder.mkdirs();
 
+                File folderlogs = new File(Config.getBasefileDir() + "/logs");
+                if (!folderlogs.exists())
+                    folderlogs.mkdirs();
+
 
             }
         });
@@ -2479,6 +2510,8 @@ public class LimboActivity extends AppCompatActivity {
                     goToSettings();
                 } else if (id == R.id.install_roms) {
                     install(true);
+                } else if (id == R.id.help) {
+                    UIUtils.onHelp(activity);
                 } else if (id == R.id.changelog) {
                     UIUtils.onChangeLog(activity);
                 } else if (id == R.id.license) {

@@ -81,6 +81,11 @@
             android:label="Settings" >
         </activity>
         <activity
+            android:name="com.max2idea.android.limbo.main.LastCrash"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
+            android:exported="false" >
+        </activity>
+        <activity
             android:name="com.max2idea.android.limbo.utils.LinksManager"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize"
             android:label="Downloads">
