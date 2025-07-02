@@ -94,6 +94,7 @@ public class LimboVNCActivity extends VncCanvasActivity {
 
 	@Override
 	public void onCreate(Bundle b) {
+        UIUtils.applyDynamicColor(getApplication());
 
 		if (LimboSettingsManager.getFullscreen(this))
 			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

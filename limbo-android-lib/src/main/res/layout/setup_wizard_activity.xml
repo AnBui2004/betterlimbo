@@ -29,7 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8sp"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:gravity="center"
                     android:text="Welcome!"/>
                 <TextView
@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8sp"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:text="License"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8sp"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:text="Changelog"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8sp"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:text="Not sure what you're doing?"
                     android:gravity="center"/>
                 <TextView
@@ -158,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8sp"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:text="Storage"
                     android:gravity="center"/>
                 <TextView
@@ -192,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8sp"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:text="Done!"/>
                 <TextView
                     android:layout_width="wrap_content"

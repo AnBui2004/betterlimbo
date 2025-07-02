@@ -14,6 +14,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UIUtils.applyDynamicColor(getApplication());
         setContentView(R.layout.splash_activity);
         UIUtils.dynamicSetLightStatusBar(this);
         new Handler().postDelayed(() -> {

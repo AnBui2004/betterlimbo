@@ -233,31 +233,35 @@ public class LimboSettingsManager extends PreferenceActivity {
 
 
     public static boolean isFirstLaunch(Activity activity) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        boolean firstTime = false;
         PackageInfo pInfo = null;
 
         try {
             pInfo = activity.getPackageManager().getPackageInfo(activity.getClass().getPackage().getName(),
                     PackageManager.GET_META_DATA);
+            firstTime = prefs.getBoolean("firstTime" + pInfo.versionName, true);
         } catch (PackageManager.NameNotFoundException e) {
+            firstTime = prefs.getBoolean("firstTime", true);
             e.printStackTrace();
         }
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        boolean firstTime = prefs.getBoolean("firstTime" + pInfo.versionName, true);
         return firstTime;
     }
 
     public static void setFirstLaunch(Activity activity) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        SharedPreferences.Editor edit = prefs.edit();
         PackageInfo pInfo = null;
 
         try {
             pInfo = activity.getPackageManager().getPackageInfo(activity.getClass().getPackage().getName(),
                     PackageManager.GET_META_DATA);
+            edit.putBoolean("firstTime" + pInfo.versionName, false);
+            edit.putBoolean("firstTime", false);
         } catch (PackageManager.NameNotFoundException e) {
+            edit.putBoolean("firstTime", false);
             e.printStackTrace();
         }
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        SharedPreferences.Editor edit = prefs.edit();
-        edit.putBoolean("firstTime" + pInfo.versionName, false);
         edit.commit();
     }
 

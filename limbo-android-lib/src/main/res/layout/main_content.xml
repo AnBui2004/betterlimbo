@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/main_content_here">
 
@@ -125,9 +126,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8sp"
+        android:padding="8dp"
         android:gravity="center_vertical"
-        android:id="@+id/bottom_bar">
+        android:id="@+id/bottom_bar"
+        android:animateLayoutChanges="true">
         <LinearLayout
             android:id="@+id/machinel"
             android:layout_width="wrap_content"
@@ -146,7 +148,8 @@
                 android:layout_gravity="center|center_vertical"
                 android:gravity="center|center_vertical"
                 android:src="@drawable/bedtime_24px"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/machineStr"
@@ -154,16 +157,27 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Machine:"
-                android:padding="8sp"/>
+                android:padding="8sp"
+                android:visibility="gone"/>
 
-            <Spinner
-                android:id="@+id/machineval"
-                android:layout_width="fill_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/machinevalLayout"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="right"
-                android:singleLine="true"
-                android:text=""/>
+                android:hint="Machines">
+
+                <AutoCompleteTextView
+                    android:id="@+id/machineval"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:clickable="true"
+                    android:singleLine="true"
+                    android:importantForAccessibility="no" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
@@ -174,14 +188,14 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="horizontal"
-            android:layout_marginEnd="8sp"
-            android:layout_marginTop="8sp"
-            android:layout_marginBottom="8sp">
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:animateLayoutChanges="true">
                 <ImageButton
                     android:id="@+id/startvm"
                     android:layout_width="wrap_content"
@@ -189,7 +203,8 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:focusable="true"
                     android:src="@drawable/play_arrow_24px"
-                    android:padding="8sp"/>
+                    android:padding="16sp"
+                    android:tint="#4CAF50"/>
 
                 <ImageButton
                     android:id="@+id/restartvm"
@@ -198,7 +213,8 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:focusable="true"
                     android:src="@drawable/refresh_24px"
-                    android:padding="8sp"/>
+                    android:padding="16sp"
+                    android:tint="#FFC107"/>
 
                 <ImageButton
                     android:id="@+id/stopvm"
@@ -207,7 +223,7 @@
                     android:background="?android:attr/selectableItemBackground"
                     android:focusable="true"
                     android:src="@drawable/stop_24px"
-                    android:padding="8sp"
+                    android:padding="16sp"
                     android:tint="@color/colorRed"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

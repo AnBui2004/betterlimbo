@@ -2,6 +2,7 @@ package com.max2idea.android.limbo.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Application;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -37,6 +38,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.color.DynamicColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.main.Config;
@@ -763,5 +765,9 @@ public class UIUtils {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, v.getPaddingBottom());
             return insets;
         });
+    }
+
+    public static void applyDynamicColor(Application _application) {
+        DynamicColors.applyToActivitiesIfAvailable(_application);
     }
 }

@@ -3,4 +3,4 @@
     style="@style/leftEllipsisSpinnerDropDownItem"
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:textColor="?android:textColorPrimary"/>
+    android:textColor="?attr/colorOnBackground"/>

@@ -903,6 +903,7 @@ public class LimboSDLActivity extends SDLActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// Log.v("SDL", "onCreate()");
         activity = this;
+		UIUtils.applyDynamicColor(getApplication());
 
 		if (LimboSettingsManager.getFullscreen(this))
 			getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

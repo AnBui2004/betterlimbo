@@ -14,6 +14,7 @@ public class LastCrash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UIUtils.applyDynamicColor(getApplication());
         UIUtils.edgeToEdge(this);
         setContentView(R.layout.last_crash);
         UIUtils.setOnApplyWindowInsetsListener(findViewById(R.id.linear_crash_log));
@@ -33,5 +34,8 @@ public class LastCrash extends AppCompatActivity {
             final Spannable contentsFormatted = UIUtils.formatAndroidLog(contents);
             crash_log.setText(contentsFormatted);
         }
+
+        if (crash_log.getText().toString().isEmpty())
+            crash_log.setText("Nothing here!");
     }
 }

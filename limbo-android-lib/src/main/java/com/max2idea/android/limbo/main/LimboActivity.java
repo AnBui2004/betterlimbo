@@ -102,6 +102,7 @@ import com.google.android.material.color.DynamicColors;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.limbo.emu.lib.R;
 import com.max2idea.android.limbo.jni.VMExecutor;
@@ -193,7 +194,7 @@ public class LimboActivity extends AppCompatActivity {
     private WifiLock wlock;
 
 
-    private Spinner mMachine;
+    private MaterialAutoCompleteTextView mMachine;
     private Spinner mCPU;
     private Spinner mArch;
     private Spinner mMachineType;
@@ -336,6 +337,8 @@ public class LimboActivity extends AppCompatActivity {
 
     private boolean notificationPermissionStatus = false;
     private boolean storagePermissionStatus = false;
+    private String[] arraySpinnerVMs;
+    private boolean isFirstSetupMachinesList = true;
 
     public static void quit() {
         activity.finish();
@@ -458,6 +461,7 @@ public class LimboActivity extends AppCompatActivity {
                     unlockRemovableDevices(false);
                     enableRemovableDiskValues(true);
                     enableNonRemovableDeviceOptions(false);
+                    hideOrShowRunButton(0);
                     vmStarted = true;
                 } else if (status_changed == VMStatus.Ready || status_changed == VMStatus.Stopped) {
                     mStatus.setImageResource(R.drawable.bedtime_24px);
@@ -465,18 +469,21 @@ public class LimboActivity extends AppCompatActivity {
                     unlockRemovableDevices(true);
                     enableRemovableDiskValues(true);
                     enableNonRemovableDeviceOptions(true);
+                    hideOrShowRunButton(1);
                 } else if (status_changed == VMStatus.Saving) {
-                    mStatus.setImageResource(R.drawable.sprint_24px);
+                    mStatus.setImageResource(R.drawable.save_clock_24px);
                     //mStatusText.setText("Saving State");
                     unlockRemovableDevices(false);
                     enableRemovableDiskValues(false);
                     enableNonRemovableDeviceOptions(false);
+                    hideOrShowRunButton(3);
                 } else if (status_changed == VMStatus.Paused) {
-                    mStatus.setImageResource(R.drawable.sprint_24px);
+                    mStatus.setImageResource(R.drawable.save_24px);
                     //mStatusText.setText("Paused");
                     unlockRemovableDevices(false);
                     enableRemovableDiskValues(false);
                     enableNonRemovableDeviceOptions(false);
+                    hideOrShowRunButton(2);
                 }
             }
         });
@@ -2194,6 +2201,7 @@ public class LimboActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         activity = this;
         super.onCreate(savedInstanceState);
+        UIUtils.applyDynamicColor(getApplication());
         UIUtils.edgeToEdge(this);
         setContentView(R.layout.limbo_main);
         setupWidgets();
@@ -2275,23 +2283,17 @@ public class LimboActivity extends AppCompatActivity {
 
     private void createListeners() {
 
-        mMachine.setOnItemSelectedListener(new OnItemSelectedListener() {
+        mMachine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            public void onItemClick(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
-                if (position == 0) {
-                    enableNonRemovableDeviceOptions(false);
-                    enableRemovableDeviceOptions(false);
-                    mVNCAllowExternal.setEnabled(false);
-                    mQMPAllowExternal.setEnabled(false);
-                    currMachine = null;
-                } else if (position == 1) {
-                    mMachine.setSelection(0);
-                    promptMachineName(activity);
-                    mVNCAllowExternal.setEnabled(true);
-                    mQMPAllowExternal.setEnabled(true);
-
-                } else {
+//                if (position == 0) {
+//                    enableNonRemovableDeviceOptions(false);
+//                    enableRemovableDeviceOptions(false);
+//                    mVNCAllowExternal.setEnabled(false);
+//                    mQMPAllowExternal.setEnabled(false);
+//                    currMachine = null;
+//                } else {
                     final String machine = (String) ((ArrayAdapter<?>) mMachine.getAdapter()).getItem(position);
                     setUserPressed(false);
                     Thread thread = new Thread(new Runnable() {
@@ -2301,21 +2303,27 @@ public class LimboActivity extends AppCompatActivity {
                     });
                     thread.setPriority(Thread.MIN_PRIORITY);
                     thread.start();
+
                     populateSnapshot();
                     mVNCAllowExternal.setEnabled(true);
                     mQMPAllowExternal.setEnabled(true);
+//                }
 
-                }
                 updateSummary(false);
                 possemachine = position;
                 linearinteliommu.setAlpha(1F);
                 linearuseuefi.setAlpha(1F);
             }
-
-            public void onNothingSelected(AdapterView<?> parentView) {
-
-            }
         });
+
+        mMachine.setOnDismissListener(() -> {
+            mMachine.post(() -> {
+                if (arraySpinnerVMs.length == 0) {
+                    promptMachineName(activity);
+                }
+            });
+        });
+
 
         mScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -2327,7 +2335,7 @@ public class LimboActivity extends AppCompatActivity {
         mStart.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
 
-                possemachine = mMachine.getSelectedItemPosition();
+                possemachine = Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString());
                 posmArch = mArch.getSelectedItemPosition();
                 anbuidata.edit().putString("mmachine", String.valueOf((long)(posmachine))).commit();
                 anbuidata.edit().putString("march", String.valueOf((long)(posmArch))).commit();
@@ -2347,7 +2355,7 @@ public class LimboActivity extends AppCompatActivity {
                 });
                 thread.setPriority(Thread.MIN_PRIORITY);
                 thread.start();
-
+                hideOrShowRunButton(0);
             }
         });
         mStop.setOnClickListener(new OnClickListener() {
@@ -2826,7 +2834,7 @@ public class LimboActivity extends AppCompatActivity {
 //            w.setNavigationBarColor(getColor(R.color.colorPrimary));
 //        }
         hideaan = true;
-        linear2.setVisibility(View.GONE);
+        hideOrShowRunButton(3);
 
         //linearballon.setVisibility(View.INVISIBLE);
         setupToolbar();
@@ -3073,6 +3081,7 @@ public class LimboActivity extends AppCompatActivity {
         enableRemovableDeviceOptions(true);
         this.mVNCAllowExternal.setEnabled(true);
         this.mQMPAllowExternal.setEnabled(true);
+        hideOrShowRunButton(1);
 
     }
 
@@ -3098,6 +3107,7 @@ public class LimboActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        isFirstSetupMachinesList = true;
                         disableListeners();
                         disableRemovableDiskListeners();
                         mMachine.setSelection(0);
@@ -3337,10 +3347,10 @@ public class LimboActivity extends AppCompatActivity {
             return;
         }
 
-        if (this.mMachine.getSelectedItemPosition() == 0 || this.currMachine == null ) {
-            UIUtils.toastShort(activity, "Select or Create a Virtual Machine first");
-            return;
-        }
+//        if (Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) == 0 || this.currMachine == null ) {
+//            UIUtils.toastShort(activity, "Select or Create a Virtual Machine first");
+//            return;
+//        }
         try {
             validateFiles();
         } catch (Exception ex) {
@@ -3604,7 +3614,7 @@ public class LimboActivity extends AppCompatActivity {
         mRestart = (ImageButton) findViewById(R.id.restartvm);
 
         //Machine
-        this.mMachine = (Spinner) findViewById(R.id.machineval);
+        this.mMachine = findViewById(R.id.machineval);
 
         //snapshots not used currently
         this.mSnapshot = (Spinner) findViewById(R.id.snapshotval);
@@ -3876,7 +3886,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateUISummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mUISectionSummary.setText("");
         else {
             String text = currMachine.ui
@@ -3894,7 +3905,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateCPUSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mCPUSectionSummary.setText("");
         else {
             String text = "Arch: " + currMachine.arch
@@ -3919,7 +3931,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateStorageSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mStorageSectionSummary.setText("");
         else {
             String text = null;
@@ -3937,7 +3950,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateRemovableStorageSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mRemovableStorageSectionSummary.setText("");
         else {
             String text = null;
@@ -3956,7 +3970,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateBootSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mBootSectionSummary.setText("");
         else {
             String text = "Boot from: " + currMachine.bootdevice;
@@ -3985,7 +4000,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateGraphicsSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mGraphicsSectionSummary.setText("");
         else {
             String text = "Video Card: " + currMachine.vga_type;
@@ -3994,7 +4010,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateAudioSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mAudioSectionSummary.setText("");
         else {
             String text = mUI.getSelectedItemPosition() == 1 ? ("Audio Card: " + currMachine.soundcard) : "Audio Card: None";
@@ -4004,7 +4021,8 @@ public class LimboActivity extends AppCompatActivity {
     }
 
     public void updateNetworkSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mNetworkSectionSummary.setText("");
         else {
             String text = "Net: " + currMachine.net_cfg;
@@ -4020,7 +4038,8 @@ public class LimboActivity extends AppCompatActivity {
 
 
     public void updateAdvancedSummary(boolean clear) {
-        if (clear || currMachine == null || mMachine.getSelectedItemPosition() < 2)
+//        if (clear || currMachine == null || Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()) < 1)
+        if (clear || currMachine == null)
             mAdvancedSectionSummary.setText("");
         else {
             String text = null;
@@ -5342,26 +5361,37 @@ public class LimboActivity extends AppCompatActivity {
                     length = machines.size();
                 }
 
-                final String[] arraySpinner = new String[machines.size() + 2];
-                arraySpinner[0] = "None";
-                arraySpinner[1] = "New";
-                int index = 2;
+                arraySpinnerVMs = new String[machines.size() + 0];
+//                arraySpinnerVMs[0] = "None";
+//                arraySpinner[1] = "New";
+                int index = 0;
                 Iterator<String> i = machines.iterator();
                 while (i.hasNext()) {
                     String file = (String) i.next();
                     if (file != null) {
-                        arraySpinner[index++] = file;
+                        arraySpinnerVMs[index++] = file;
                     }
                 }
 
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     public void run() {
-                        ArrayAdapter<String> machineAdapter = new ArrayAdapter<String>(activity, R.layout.custom_spinner_item, arraySpinner);
+                        ArrayAdapter<String> machineAdapter = new ArrayAdapter<>(
+                                activity,
+                                android.R.layout.simple_dropdown_item_1line,
+                                arraySpinnerVMs
+                        );
                         machineAdapter.setDropDownViewResource(R.layout.custom_spinner_dropdown_item);
                         mMachine.setAdapter(machineAdapter);
-                        mMachine.invalidate();
-                        if (machineValue != null)
-                            setAdapter(mMachine, machineValue);
+                        mMachine.post(() -> {
+                            if (arraySpinnerVMs.length > 0) {
+                                mMachine.setText(arraySpinnerVMs[arraySpinnerVMs.length - 1], false);
+                                onFirstSetupMachinesList(Arrays.asList(arraySpinnerVMs).indexOf(mMachine.getText().toString()));
+                            } else {
+                                mMachine.setText("", false);
+                                hideOrShowRunButton(3);
+                                promptMachineName(activity);
+                            }
+                        });
                     }
                 });
 
@@ -7181,6 +7211,57 @@ public class LimboActivity extends AppCompatActivity {
             this.spinner = spinner;
             this.enableCheckBox = enableCheckbox;
             this.colName = dbColName;
+        }
+    }
+
+    private void hideOrShowRunButton(int _status) {
+        CardView _controlm = findViewById(R.id.controlm);
+
+        if (_status == 0) {
+            //Runing
+            _controlm.setVisibility(View.VISIBLE);
+            mStart.setVisibility(View.VISIBLE);
+            mRestart.setVisibility(View.VISIBLE);
+            mStop.setVisibility(View.VISIBLE);
+        } else if (_status == 1) {
+            //Stoped
+            _controlm.setVisibility(View.VISIBLE);
+            mStart.setVisibility(View.VISIBLE);
+            mRestart.setVisibility(View.GONE);
+            mStop.setVisibility(View.GONE);
+        } else if (_status == 2) {
+            //Paused
+            _controlm.setVisibility(View.VISIBLE);
+            mStart.setVisibility(View.VISIBLE);
+            mRestart.setVisibility(View.GONE);
+            mStop.setVisibility(View.VISIBLE);
+        } else if (_status == 3) {
+            //None
+            _controlm.setVisibility(View.GONE);
+        }
+    }
+
+    private void onFirstSetupMachinesList(int _position) {
+        if (isFirstSetupMachinesList) {
+            isFirstSetupMachinesList = false;
+            final String machine = (String) ((ArrayAdapter<?>) mMachine.getAdapter()).getItem(_position);
+            setUserPressed(false);
+            Thread thread = new Thread(new Runnable() {
+                public void run() {
+                    loadMachine(machine, "");
+                }
+            });
+            thread.setPriority(Thread.MIN_PRIORITY);
+            thread.start();
+
+            populateSnapshot();
+            mVNCAllowExternal.setEnabled(true);
+            mQMPAllowExternal.setEnabled(true);
+
+            updateSummary(false);
+            possemachine = _position;
+            linearinteliommu.setAlpha(1F);
+            linearuseuefi.setAlpha(1F);
         }
     }
 }

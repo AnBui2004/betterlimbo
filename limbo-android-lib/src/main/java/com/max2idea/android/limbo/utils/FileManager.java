@@ -279,10 +279,7 @@ public class FileManager extends ListActivity {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        Window w = this.getWindow();
-        w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        w.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        w.setNavigationBarColor(Color.parseColor("#151E25"));
+        UIUtils.applyDynamicColor(getApplication());
 
         setContentView(R.layout.directory_list);
         select = (Button) findViewById(R.id.select_button);

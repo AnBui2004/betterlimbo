@@ -41,6 +41,7 @@ public class SetupWizardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        UIUtils.applyDynamicColor(getApplication());
         setContentView(R.layout.setup_wizard_activity);
 
         linearwelcome = findViewById(R.id.linearwelcome);
